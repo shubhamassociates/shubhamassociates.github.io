@@ -336,6 +336,8 @@
       </div>
     </div>
     <form id="contactForm" class="bg-white text-slate-900 rounded-2xl p-6 border shadow-sm">
+      <!-- Hidden To Email Field for EmailJS -->
+      <input type="hidden" name="to_email" value="shubhamassociates.pvt.ltd@gmail.com">
       <label class="block text-sm font-medium">Name</label>
       <input name="name" required type="text" class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring" placeholder="Your name">
       <label class="block text-sm font-medium mt-4">Email</label>
@@ -352,7 +354,7 @@
 <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script type="text/javascript">
   (function(){
-    emailjs.init("SKLXIdV8gxtekCHX5"); // Replace with your EmailJS Public Key
+    emailjs.init("SKLXIdV8gxtekCHX5"); // Your EmailJS Public Key
   })();
 
   document.getElementById('contactForm').addEventListener('submit', function(e) {
