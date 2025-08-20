@@ -371,12 +371,12 @@
 <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script type="text/javascript">
   (function(){
-    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+    emailjs.init("SKLXIdV8gxtekCHX5"); // Replace with your EmailJS Public Key
   })();
 
   document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+    emailjs.sendForm('service_wy8tihm', 'template_71mrjny', this)
       .then(function() {
         alert('Message sent!');
         document.getElementById('contactForm').reset();
