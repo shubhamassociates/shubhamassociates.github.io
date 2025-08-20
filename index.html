@@ -324,29 +324,48 @@
 
   <!-- CONTACT -->
   <section id="contact" class="py-16 bg-[#0f1724] text-white">
-    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-start">
-      <div>
-        <h3 class="text-3xl font-extrabold">Get in Touch</h3>
-        <p class="mt-3 text-slate-300">Have a requirement or question? Send a message and we’ll respond quickly.</p>
-        <div class="mt-6 space-y-3 text-slate-200">
-          <p>📍 Jodhpur, Rajasthan</p>
-          <p>📞 +91-9414717878</p>
-          <a href="mailto:shubhamassociates.pvt.ltd@gmail.com" style="color: inherit; text-decoration: underline;">✉️ shubhamassociates.pvt.ltd@gmail.com</a>
-          <p>💬 WhatsApp: <a class="underline text-[var(--amber-400)]" href="tel:9414717878" target="_blank" rel="noreferrer" style="color: inherit; text-decoration: underline;">Click Here</a></p>
-        </div>
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-start">
+    <div>
+      <h3 class="text-3xl font-extrabold">Get in Touch</h3>
+      <p class="mt-3 text-slate-300">Have a requirement or question? Send a message and we’ll respond quickly.</p>
+      <div class="mt-6 space-y-3 text-slate-200">
+        <p>📍 Sector-1, K.B.H.B, Jodhpur, Rajasthan</p>
+        <p>📞 +91-9414717878</p>
+        <a href="mailto:shubhamassociates.pvt.ltd@gmail.com" style="color: inherit; text-decoration: underline;">✉️ shubhamassociates.pvt.ltd@gmail.com</a>
+        <p>💬 WhatsApp: <a class="underline text-[var(--amber-400)]" href="tel:9414717878" target="_blank" rel="noreferrer" style="color: inherit; text-decoration: underline;">Click Here</a></p>
       </div>
-      <form id="contactForm" class="bg-white text-slate-900 rounded-2xl p-6 border shadow-sm" action="https://formspree.io/f/{mkgzlqbv}" method="POST">
-    <label class="block text-sm font-medium">Name</label>
-    <input name="Name" required type="text" class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring" placeholder="Your name">
-    <label class="block text-sm font-medium mt-4">Email</label>
-    <input name="Email" required type="email" class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring" placeholder="you@company.com">
-    <label class="block text-sm font-medium mt-4">Message</label>
-    <textarea name="Message" required rows="4" class="mt-1 w-full rounded-lg border px-3 py-2" placeholder="Tell us about your needs…"></textarea>
-    <button type="submit" class="mt-5 w-full px-5 py-3 rounded-lg bg-gradient-to-r from-[var(--amber-400)] to-[var(--amber-500)] text-slate-900 font-semibold">Send Message</button>
-    <p class="mt-2 text-xs text-slate-400">Your message will be sent instantly—no email app required.</p>
-</form>
     </div>
-  </section>
+    <form id="contactForm" class="bg-white text-slate-900 rounded-2xl p-6 border shadow-sm">
+      <label class="block text-sm font-medium">Name</label>
+      <input name="name" required type="text" class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring" placeholder="Your name">
+      <label class="block text-sm font-medium mt-4">Email</label>
+      <input name="email" required type="email" class="mt-1 w-full rounded-lg border px-3 py-2 focus:ring" placeholder="you@company.com">
+      <label class="block text-sm font-medium mt-4">Message</label>
+      <textarea name="message" required rows="4" class="mt-1 w-full rounded-lg border px-3 py-2" placeholder="Tell us about your needs…"></textarea>
+      <button type="submit" class="mt-5 w-full px-5 py-3 rounded-lg bg-gradient-to-r from-[var(--amber-400)] to-[var(--amber-500)] text-slate-900 font-semibold">Send Message</button>
+      <p class="mt-2 text-xs text-slate-400">Your message will be sent instantly—no email app required.</p>
+    </form>
+  </div>
+</section>
+
+<!-- EmailJS Script (add before </body>) -->
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+  })();
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+      .then(function() {
+        alert('Message sent!');
+        document.getElementById('contactForm').reset();
+      }, function(error) {
+        alert('Error: ' + error.text);
+      });
+  });
+</script>
 
   <!-- FOOTER -->
   <style>
