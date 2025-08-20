@@ -352,25 +352,6 @@
 <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script type="text/javascript">
   (function(){
-    emailjs.init("81ipblRlX4ufG9Nhu"); // Replace with your EmailJS Public Key
-  })();
-
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    emailjs.sendForm('service_wy8tihm', 'template_71mrjny', this)
-      .then(function() {
-        alert('Message sent!');
-        document.getElementById('contactForm').reset();
-      }, function(error) {
-        alert('Error: ' + error.text);
-      });
-  });
-</script>
-
-<!-- EmailJS Script (add before </body>) -->
-<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function(){
     emailjs.init("SKLXIdV8gxtekCHX5"); // Replace with your EmailJS Public Key
   })();
 
