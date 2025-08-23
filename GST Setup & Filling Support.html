@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GST Setup & Filing Support | Shubham Associates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            color: #222;
+        }
+        header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 32px 0 24px 0;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d5cff;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 10px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.08);
+            padding: 40px 32px;
+        }
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        .details-text {
+            flex: 1 1 350px;
+        }
+        .details-text h2 {
+            color: #2d5cff;
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+        .details-text ul {
+            margin: 0 0 18px 0;
+            padding: 0 0 0 20px;
+        }
+        .details-text ul li {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .details-text p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+        .details-img {
+            flex: 1 1 300px;
+            text-align: center;
+        }
+        .animated-img {
+            width: 90%;
+            max-width: 340px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+            animation: float 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px);}
+            100% { transform: translateY(-18px);}
+        }
+        .portfolio {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .portfolio h3 {
+            font-size: 1.7rem;
+            color: #2d5cff;
+            margin-bottom: 18px;
+        }
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .portfolio-item {
+            background: #f5f7fa;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            width: 220px;
+            padding: 18px;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+        .portfolio-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .portfolio-item span {
+            font-weight: 600;
+            color: #2d5cff;
+            font-size: 1rem;
+        }
+        .portfolio-btn {
+            background: #2d5cff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .portfolio-btn:hover {
+            background: #1a3bb3;
+        }
+        .contact-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .order-btn {
+            background: linear-gradient(90deg, #2d5cff 0%, #6a82fb 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 18px 48px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(44,62,80,0.10);
+            transition: background 0.2s;
+            margin-bottom: 18px;
+        }
+        .order-btn:hover {
+            background: linear-gradient(90deg, #1a3bb3 0%, #6a82fb 100%);
+        }
+        .contact-links {
+            margin-top: 16px;
+            font-size: 1.1rem;
+        }
+        .contact-links a {
+            color: #2d5cff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .contact-links a:hover {
+            color: #1a3bb3;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .details {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .container {
+                padding: 24px 8px;
+            }
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            .details-text h2 {
+                font-size: 1.2rem;
+            }
+            .portfolio h3 {
+                font-size: 1.1rem;
+            }
+            .order-btn {
+                font-size: 1rem;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GST Setup & Filing Support</h1>
+        <p>Complete GST Setup, Compliance & Filing Support for your Business.</p>
+    </header>
+    <div class="container">
+        <section class="details">
+            <div class="details-text">
+                <h2>What is GST Setup & Filing Support?</h2>
+                <h3>1. GST Setup</h3>
+                <p>👉 GST Setup means registering your business under GST and enabling all GST-related features in Tally or any accounting software.</p>
+                <p>It includes:</p>
+                    <li>GST Registration</li>
+                    <li>Enabling GST in Tally</li>
+                    <li>Setting GST Rates & HSN/SAC Codes</li>
+                    <li>Configuring State & Nature of Business</li>
+                <p>➡️ After this, your company is ready to generate GST-compliant invoices and maintain GST records.</p>
+                <h3>2. GST Filing Support</h3>
+                <p>👉 GST Filing means submitting GST returns (GSTR-1, GSTR-3B, etc.) to the Government on a monthly/quarterly basis.</p>
+                <p>This service covers:</p>
+                    <li>Monthly/Quarterly Return Filing</li>
+                    <li>Input Tax Credit (ITC) Management</li>
+                    <li>GSTR-1, GSTR-3B, GSTR-9 Filing</li>
+                    <li>GST Reconciliation</li>
+                    <li>Avoiding Late Fees & Penalties</li>
+                <p>➡️ Basically, we help you stay GST-compliant with zero hassle.</p>
+                <h3>✅ In short:</h3>
+                    <li>GST Setup = Registering & Enabling GST for your business.</li>
+                    <li>GST Filing Support = Managing & filing all GST returns on time.</li>
+            </div>
+            <div class="details-img">
+                <img src="GST filing Front.jpg" alt="GST Setup Illustration" class="animated-img">
+            </div>
+        </section>
+        <section class="portfolio">
+            <h3>Portfolio: Our Previous GST Clients & Services</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="GST Registration.jpg" alt="GST Registration">
+                    <span>GST Registration</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="GST filing.jpg" alt="Return Filing">
+                    <span>Return Filing</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="GST Complience.jpg" alt="GST Compliance">
+                    <span>GST Compliance</span>
+                </div>
+            </div>
+            <button class="portfolio-btn" onclick="window.location.href='#'">
+                <i class="fas fa-eye"></i> View More Clients
+            </button>
+        </section>
+        <section class="contact-section">
+            <button class="order-btn" onclick="window.open('tel:9414717878')">
+                <i class="fas fa-shopping-cart"></i> Order Now
+            </button>
+            <div class="contact-links">
+                <a href="tel:9414717878"><i class="fas fa-phone"></i> 9414717878</a>
+                <a href="mailto:shubhamassociates.pvt.ltd@gmail.com"><i class="fas fa-envelope"></i> shubhamassociates.pvt.ltd@gmail.com</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

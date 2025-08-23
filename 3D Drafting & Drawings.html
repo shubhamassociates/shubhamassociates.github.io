@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Drafting & Drawings Services | Shubham Associates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            color: #222;
+        }
+        header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 32px 0 24px 0;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d5cff;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 10px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.08);
+            padding: 40px 32px;
+        }
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        .details-text {
+            flex: 1 1 350px;
+        }
+        .details-text h2 {
+            color: #2d5cff;
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+        .details-text ul {
+            margin: 0 0 18px 0;
+            padding: 0 0 0 20px;
+        }
+        .details-text ul li {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .details-text p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+        .details-img {
+            flex: 1 1 300px;
+            text-align: center;
+        }
+        .animated-img {
+            width: 90%;
+            max-width: 340px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+            animation: float 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px);}
+            100% { transform: translateY(-18px);}
+        }
+        .portfolio {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .portfolio h3 {
+            font-size: 1.7rem;
+            color: #2d5cff;
+            margin-bottom: 18px;
+        }
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .portfolio-item {
+            background: #f5f7fa;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            width: 220px;
+            padding: 18px;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+        .portfolio-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .portfolio-item span {
+            font-weight: 600;
+            color: #2d5cff;
+            font-size: 1rem;
+        }
+        .portfolio-btn {
+            background: #2d5cff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .portfolio-btn:hover {
+            background: #1a3bb3;
+        }
+        .contact-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .order-btn {
+            background: linear-gradient(90deg, #2d5cff 0%, #6a82fb 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 18px 48px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(44,62,80,0.10);
+            transition: background 0.2s;
+            margin-bottom: 18px;
+        }
+        .order-btn:hover {
+            background: linear-gradient(90deg, #1a3bb3 0%, #6a82fb 100%);
+        }
+        .contact-links {
+            margin-top: 16px;
+            font-size: 1.1rem;
+        }
+        .contact-links a {
+            color: #2d5cff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .contact-links a:hover {
+            color: #1a3bb3;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .details {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .container {
+                padding: 24px 8px;
+            }
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            .details-text h2 {
+                font-size: 1.2rem;
+            }
+            .portfolio h3 {
+                font-size: 1.1rem;
+            }
+            .order-btn {
+                font-size: 1rem;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>3D Drafting & Drawings</h1>
+        <p>Professional 3D drafting and detailed drawings for all types of architectural projects.</p>
+    </header>
+    <div class="container">
+        <section class="details">
+            <div class="details-text">
+                <h2>What is 3D Drafting & Drawing?</h2>
+                <ul>
+                    <li>3D drafting creates realistic visualizations and technical drawings for buildings and interiors.</li>
+                    <li>Helps in understanding spatial relationships, dimensions, and design intent.</li>
+                    <li>Includes floor plans, elevations, sections, and detailed construction drawings.</li>
+                    <li>Improves communication between clients, architects, and contractors.</li>
+                    <li>Supports design approvals, modifications, and accurate execution on site.</li>
+                </ul>
+                <p>
+                    Our 3D drafting services deliver precise and visually engaging drawings for residential, commercial, and industrial projects. We use advanced software to create models and plans that help you visualize and execute your ideas efficiently.
+                </p>
+            </div>
+            <div class="details-img">
+                <img src="3D Frafting and Drawing.webp" alt="3D Drafting Illustration" class="animated-img">
+            </div>
+        </section>
+        <section class="portfolio">
+            <h3>Portfolio: Our 3D Drafting Projects & Clients</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="Residential 3D Design.jpg" alt="Residential 3D Drafting">
+                    <span>Residential 3D Drafting</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="Commercial 3D Design.jpg" alt="Commercial 3D Design">
+                    <span>Commercial 3D Design</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="Inrerior 3D Layouts.jpg" alt="Interior 3D Layouts">
+                    <span>Interior 3D Layouts</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="Industrial 3D Frafting.webp" alt="Industrial 3D Drafting">
+                    <span>Industrial 3D Drafting</span>
+                </div>
+            </div>
+            <button class="portfolio-btn" onclick="window.location.href='#'">
+                <i class="fas fa-eye"></i> View More Projects
+            </button>
+        </section>
+        <section class="contact-section">
+            <button class="order-btn" onclick="window.open('tel:9414717878')">
+                <i class="fas fa-shopping-cart"></i> Order Now
+            </button>
+            <div class="contact-links">
+                <a href="tel:9414717878"><i class="fas fa-phone"></i> 9414717878</a>
+                <a href="mailto:shubhamassociates.pvt.ltd@gmail.com"><i class="fas fa-envelope"></i> shubhamassociates.pvt.ltd@gmail.com</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
