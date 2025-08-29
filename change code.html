@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 40px 0;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 24px 24px 24px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: popUp 1.5s ease forwards;
+        }
+        .service-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        @keyframes popUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .service-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+        .service-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2d2d2d;
+        }
+        .service-info {
+            font-size: 1em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .service-btn {
+            background: #0078d4;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 32px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .service-btn:hover {
+            background: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center; margin-top:32px;">Our Services</h2>
+    <div class="services-container">
+        <!-- Tally Services Card -->
+        <div class="service-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Tally" class="service-img">
+            <div class="service-title">Tally Services</div>
+            <div class="service-info">
+                We provide expert Tally solutions including setup, training, support, and troubleshooting for your business accounting needs.
+            </div>
+            <button class="service-btn">Our Services</button>
+        </div>
+        <!-- Autocad Services Card -->
+        <div class="service-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968706.png" alt="Autocad" class="service-img">
+            <div class="service-title">Autocad Services</div>
+            <div class="service-info">
+                Professional Autocad drafting, design, and consultation services for engineering, architecture, and construction projects.
+            </div>
+            <button class="service-btn">Our Services</button>
+        </div>
+    </div>
+</body>
+</html>

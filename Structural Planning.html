@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Associates — Structural Planning (Luxury)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root{
+            --bg-dark: #070709;
+            --panel: rgba(255,255,255,0.04);
+            --accent: linear-gradient(90deg,#c9a94a,#e6cf7a);
+            --primary: #b89b4a;
+            --glass: rgba(255,255,255,0.03);
+            --muted: rgba(255,255,255,0.6);
+            --max-width: 1200px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+        body{
+            background: var(--bg-dark);
+            color: #fff;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            overflow-x:hidden;
+            scroll-behavior:smooth;
+        }
+
+        /* NAVBAR */
+        .navbar{
+            position:fixed;top:0;left:0;right:0;z-index:1200;
+            height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;
+            background: linear-gradient(180deg, rgba(5,5,7,0.55), rgba(5,5,7,0.35));
+            border-bottom:1px solid rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+        }
+        .nav-left{display:flex;align-items:center;gap:18px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .brand .title{line-height:1}
+        .brand .title h4{margin:0;font-size:1rem;font-weight:700;letter-spacing:0.6px}
+        .brand .title span{display:block;font-size:0.72rem;color:var(--muted);margin-top:2px}
+
+        .nav-right{display:flex;align-items:center;gap:12px}
+        .search-wrap{position:relative}
+        .search-input{width:280px;max-width:calc(100vw - 240px);padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff;outline:none}
+        .search-suggestions{position:absolute;top:46px;left:0;right:0;background:var(--panel);border-radius:10px;padding:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6);display:none}
+        .suggestion{padding:6px 8px;border-radius:6px;cursor:pointer;font-size:0.95rem;color:var(--muted)}
+        .suggestion:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+        .dots{position:relative}
+        .dots button{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px;border-radius:10px;color:var(--muted);cursor:pointer}
+        .dots-menu{position:absolute;right:0;top:54px;min-width:180px;background:var(--panel);border-radius:10px;padding:10px;display:none;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+        .dots-menu a{display:block;padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none}
+        .dots-menu a:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+        /* HERO */
+        .hero{
+            min-height:88vh;padding-top:84px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden
+        }
+        .hero-bg{
+            position:absolute;inset:0;background-image:url('structural-bg.jpg'); /* Replace with your Structural full-size image */
+            background-size:cover;background-position:center center;filter:grayscale(6%) contrast(1.05) brightness(0.35);
+            transform-origin:center;z-index:0;
+        }
+        /* subtle animated overlay texture */
+        .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(8,6,10,0.25), rgba(3,3,4,0.6));mix-blend-mode:multiply}
+
+        .hero-inner{position:relative;z-index:5;max-width:var(--max-width);width:100%;padding:48px 28px;display:flex;gap:40px;align-items:center}
+        .hero-left{flex:1;min-width:380px}
+        .eyebrow{font-size:0.9rem;color:var(--muted);letter-spacing:1px;margin-bottom:12px}
+        .hero-title{font-family:'Playfair Display',serif;font-size:2.6rem;margin:0 0 12px 0;line-height:1.02;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,0.8)}
+        .hero-sub{font-size:1.05rem;color:var(--muted);max-width:680px}
+
+        .hero-cta{margin-top:22px;display:flex;gap:14px;align-items:center}
+        .btn-primary{background:var(--accent);border:none;padding:14px 22px;border-radius:12px;font-weight:700;cursor:pointer;color:#111;box-shadow:0 8px 28px rgba(0,0,0,0.5)}
+        .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:12px 18px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+        .hero-right{width:420px;min-width:280px;display:flex;justify-content:flex-end}
+        .floating-card{width:420px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px);box-shadow:0 20px 80px rgba(0,0,0,0.7);transform:translateY(-8px)}
+        .floating-card h5{margin:0 0 8px 0;font-size:1.05rem}
+        .floating-card img{width:100%;border-radius:10px;display:block}
+
+        /* animated subtle shapes */
+        .float-shape{position:absolute;border-radius:50%;opacity:0.06;filter:blur(20px)}
+        .s1{width:420px;height:420px;right:-120px;bottom:-120px;background:linear-gradient(90deg,#c9a94a,#6a82fb)}
+        .s2{width:220px;height:220px;left:-60px;top:120px;background:linear-gradient(90deg,#1a3bb3,#6a82fb)}
+
+        /* INFO SECTION */
+        .info{padding:48px 22px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));}
+        .card{max-width:var(--max-width);margin:0 auto;background:transparent;border-radius:12px;padding:30px;display:flex;gap:30px;align-items:flex-start}
+        .info-left{flex:2}
+        .info-left h2{font-size:1.8rem;margin:0 0 12px 0;color:#fff}
+        .info-left p{color:var(--muted);line-height:1.7}
+        .info-list{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+        .info-item{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+        .info-item h4{margin:0 0 6px 0}
+        .info-item p{margin:0;color:var(--muted);font-size:0.95rem}
+
+        /* PORTFOLIO */
+        .portfolio{padding:48px 22px 22px}
+        .portfolio-inner{max-width:var(--max-width);margin:0 auto}
+        .portfolio h3{font-size:1.6rem;margin-bottom:18px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+        .project{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);overflow:hidden;transition:transform .25s}
+        .project:hover{transform:translateY(-8px)}
+        .project img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+        .project .meta{padding:10px}
+        .project .meta h4{margin:0}
+        .project .meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.92rem}
+
+        /* CONTACT SECTION */
+        .contact{padding:48px 22px 120px}
+        .contact-inner{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start}
+        .contact-panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+        .contact-panel .logo-big{width:100%;display:flex;align-items:center;gap:12px}
+        .contact-panel .logo-big .logo{width:72px;height:72px;font-size:1.3rem}
+        .contact-panel p{color:var(--muted);margin-top:8px}
+
+        .contact-form{background:transparent;padding:22px;border-radius:14px}
+        .field{display:flex;flex-direction:column;margin-bottom:12px}
+        .field label{font-size:0.9rem;color:var(--muted);margin-bottom:6px}
+        .field input,.field textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:#fff;resize:none}
+        .send-btn{background:var(--accent);border:none;padding:14px 18px;border-radius:12px;font-weight:700;cursor:pointer;color:#111}
+
+        /* FOOTER */
+        footer{padding:20px 22px;color:var(--muted);text-align:center}
+
+        /* Responsive */
+        @media (max-width:980px){
+            .hero-inner{flex-direction:column;}
+            .hero-right{order:2;width:100%;justify-content:center}
+            .contact-inner{grid-template-columns:1fr;}
+            .search-input{width:180px}
+        }
+
+        @media (max-width:560px){
+            .search-input{display:none}
+            .brand .title h4{font-size:0.95rem}
+            .hero-title{font-size:1.6rem}
+        }
+
+        /* small animations */
+        .fadeUp{animation:fadeUp .9s ease both}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+        /* minimal slider styles to preserve existing structure */
+        .slider{position:absolute;inset:0;z-index:0;overflow:hidden}
+        .slides{display:flex;width:300%;height:100%;transition:transform .8s ease}
+        .slide{flex:1 0 100%;background-size:cover;background-position:center;filter:grayscale(6%) contrast(1.05) brightness(0.42)}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);padding:10px 14px;border-radius:10px;color:#fff;cursor:pointer}
+        .prev{left:14px}
+        .next{right:14px}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="brand">
+                <img src="FZqOBKg.png" class="h-5 md:h-10 lg:h-12 w-auto" alt="Shubham Associates logo">
+                <div class="title">
+                    <h4>Shubham Associates</h4>
+                    <span>Tally & Business Solutions • Structural Planning</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="search-wrap">
+                <input id="search" class="search-input" placeholder="Search services, e.g. Foundation Design, RCC, Tally..." />
+                <div id="suggestions" class="search-suggestions"></div>
+            </div>
+            <div class="dots">
+                <button id="dotsBtn" aria-label="More options"><i class="fas fa-ellipsis-v"></i></button>
+                <div id="dotsMenu" class="dots-menu">
+                    <a href="#contact">Contact</a>
+                    <a href="#info">Services</a>
+                    <a href="#hero">Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+<section id="hero" class="hero">
+    <!-- 🔹 Background Slider -->
+    <div class="slider" aria-hidden="true">
+        <div class="slides" id="slides">
+            <div class="slide" style="background-image:url('Structural Hero 1.png')"></div>
+            <div class="slide" style="background-image:url('Structural Hero 2.png')"></div>
+            <div class="slide" style="background-image:url('Structural Hero 3.png')"></div>
+        </div>
+        <button class="prev" id="prevBtn">‹</button>
+        <button class="next" id="nextBtn">›</button>
+    </div>
+
+    <!-- Decorative floating shapes -->
+    <div class="float-shape s1" aria-hidden="true"></div>
+    <div class="float-shape s2" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+        <div class="hero-left fadeUp">
+            <div class="eyebrow">Expert Structural Planning & Design</div>
+            <h1 class="hero-title">Robust, Code‑Compliant Structural Solutions — From Site to Shop Drawings</h1>
+            <div class="hero-sub">
+                <p>We deliver structural engineering that ensures safety, economy and constructability: site investigation, load analysis, modeling, RCC/steel design, detailed shop drawings and on‑site coordination for reliable delivery.</p>
+            </div>
+
+            <div class="hero-cta">
+                <button class="btn-primary" id="gotoInfo"><i class="fas fa-arrow-down"></i>&nbsp;Go to Info</button>
+                <button class="btn-ghost" onclick="openContact()"><i class="fas fa-phone"></i>&nbsp;Contact Us</button>
+            </div>
+        </div>
+
+        <div class="hero-right fadeUp">
+            <div class="floating-card">
+                <h5>Featured: Structural Workflow</h5>
+                <img src="A mid-shot, slightly.png" alt="Structural planning workflow preview"/>
+                <p style="color:var(--muted);font-size:0.95rem;margin-top:8px">Site Investigation → Modeling → Analysis → Design (RCC/Steel) → Shop Drawings & Detailing.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- INFO (normal text, white color) -->
+    <section id="info" class="info">
+        <div class="card">
+            <div class="info-left">
+                <h2>About Our Structural Planning Services</h2>
+                <p style="color:#fff">Shubham Associates provides end‑to‑end structural engineering services — from preliminary investigations and load assessments to detailed design, drawings and site support. We emphasise compliance with IS/BIS codes, seismic detailing, constructability and clear deliverables for contractors and fabricators.</p>
+
+                <div class="info-list" style="margin-top:18px">
+                    <div class="info-item">
+                        <h4>Site Investigation & Geotech Review</h4>
+                        <p>Interpretation of soil reports, bearing capacity checks and foundation recommendations.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Load Calculations & Modeling</h4>
+                        <p>Dead/live/wind/seismic loading, finite element and frame analysis for accurate sizing.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>RCC Design & Detailing</h4>
+                        <p>Beam, column, slab and foundation design with bar bending schedules and reinforcement layouts.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Steel Design & Connections</h4>
+                        <p>Member sizing, bolted/welded connection detailing and shop‑ready fabrication drawings.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Seismic & Wind Design</h4>
+                        <p>Code‑based lateral system checks, ductility detailing and drift control strategies.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Shop Drawings & Fabrication Docs</h4>
+                        <p>Clear shop drawings, schedules and marking plans to minimise site errors and rework.</p>
+                    </div>
+                </div>
+
+                <p style="color:#fff;margin-top:18px">Deliverables: analytical models, stamped calculation reports, layered DWG/DXF, shop drawings, BBS, stamped PDFs and revision logs. We coordinate with architects, MEP and contractors for clash‑free execution.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio">
+        <div class="portfolio-inner">
+            <h3>Portfolio: Selected Structural Projects</h3>
+            <div class="grid">
+                <div class="project">
+                    <img src="Landscape in AutoCAD.png" alt="Multistorey Structure">
+                    <div class="meta"><h4>Multistorey Residential — RCC Frame</h4><p>Frame modelling, slab design, column & foundation detailing.</p></div>
+                </div>
+                <div class="project">
+                    <img src="A close-up, dynamic .png" alt="Industrial Shed">
+                    <div class="meta"><h4>Industrial Steel Shed — Fabrication Drawings</h4><p>Portal frame design, connection details and shop drawings.</p></div>
+                </div>
+                <div class="project">
+                    <img src="A ground-level shot .png" alt="Bridge Span">
+                    <div class="meta"><h4>Short‑Span Bridge — Precast Elements</h4><p>Precast design, reinforcement layout and erection sequencing.</p></div>
+                </div>
+                <div class="project">
+                    <img src="Structural Planning.png" alt="Retrofitting">
+                    <div class="meta"><h4>Seismic Retrofitting — Heritage Building</h4><p>Strengthening design, micro‑pile foundations and discreet interventions.</p></div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:18px">
+                <button class="btn-primary" onclick="window.location.href='#'">View More Clients</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT (right side form, left logo) -->
+    <section id="contact" class="contact">
+        <div class="contact-inner">
+            <div class="contact-panel">
+                <div class="logo-big">
+                    <img src="FZqOBKg.png" class="w-[28%]" alt="Brand mark">
+                    <div>
+                        <h3 style="margin:0">Shubham Associates</h3>
+                        <p style="margin:6px 0 0 0;color:var(--muted)">Structure‑first design • Trusted delivery</p>
+                    </div>
+                </div>
+
+                <p style="margin-top:14px;color:var(--muted)">Call: <a href="tel:9414717878" style="color:var(--primary);text-decoration:none">9414717878</a><br>Email: <a href="mailto:shubhamassociates.pvt.ltd@gmail.com" style="color:var(--primary);text-decoration:none">shubhamassociates.pvt.ltd@gmail.com</a></p>
+
+                <div style="margin-top:12px;color:var(--muted)">
+                    <strong>Office</strong>
+                    <p style="margin:6px 0 0 0;color:var(--muted)">Jodhpur, India — We accept remote & on-site structural projects.</p>
+                </div>
+            </div>
+            <div class="contact-form">
+    <h3 style="margin-top:0">Get in touch</h3>
+    <div class="field"><label for="name">Name</label><input id="name" placeholder="Your full name"></div>
+    <div class="field"><label for="email">Email</label><input id="email" placeholder="you@example.com"></div>
+    <div class="field"><label for="service">Service Interested</label><input id="service" placeholder="Foundation Design, RCC, Steel Detailing..."></div>
+    <div class="field"><label for="message">Message</label><textarea id="message" rows="6" placeholder="Tell us about your site & requirements"></textarea></div>
+    <div style="display:flex;gap:12px;align-items:center">
+        <button class="send-btn" onclick="sendToWhatsApp()">Send Message</button>
+        <div style="color:var(--muted);font-size:0.92rem">
+            Or call us: 
+            <a href="tel:9414717878" style="color:var(--primary);text-decoration:none">9414717878</a>
+        </div>
+    </div>
+</div>
+
+<script>
+function sendToWhatsApp() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let service = document.getElementById("service").value;
+    let message = document.getElementById("message").value;
+
+    let whatsappMessage = `Hello, my name is ${name}. \nEmail: ${email} \nInterested in: ${service} \nMessage: ${message}`;
+
+    let url = "https://wa.me/919414717878?text=" + encodeURIComponent(whatsappMessage);
+
+    window.open(url, "_blank"); // नयी tab में WhatsApp खुलेगा
+}
+</script>
+
+
+    <footer>
+        © <span id="year"></span> Shubham Associates — All rights reserved.
+    </footer>
+
+    <script>
+        // small utility & interactions
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // Dots menu toggle
+        const dotsBtn = document.getElementById('dotsBtn');
+        const dotsMenu = document.getElementById('dotsMenu');
+        dotsBtn.addEventListener('click', (e)=>{e.stopPropagation();dotsMenu.style.display = dotsMenu.style.display === 'block'? 'none':'block'});
+        document.addEventListener('click', ()=>{dotsMenu.style.display='none'});
+
+        // Search suggestions (searchable across services)
+        const services = [
+          'Foundation Design','RCC Design & Detailing','Steel Detailing','Seismic Retrofitting','Shop Drawings',
+          'Load Calculations','Site Investigation','Precast Design','BIM Coordination','Tally Setup','GST Filing Support'
+        ];
+        const suggestionsEl = document.getElementById('suggestions');
+        const searchInput = document.getElementById('search');
+
+        searchInput.addEventListener('input', ()=>{
+            const q = searchInput.value.trim().toLowerCase();
+            suggestionsEl.innerHTML = '';
+            if(!q){suggestionsEl.style.display='none';return}
+            const matched = services.filter(s=>s.toLowerCase().includes(q));
+            matched.forEach(m=>{
+                const div = document.createElement('div');div.className='suggestion';div.innerText = m;div.onclick = ()=>{searchInput.value=m; suggestionsEl.style.display='none';document.getElementById('service').value = m}
+                suggestionsEl.appendChild(div);
+            })
+            if(matched.length) suggestionsEl.style.display='block'; else suggestionsEl.style.display='none'
+        })
+
+        // Goto info scroll
+        document.getElementById('gotoInfo').addEventListener('click', ()=>{document.getElementById('info').scrollIntoView({behavior:'smooth'})})
+
+        function openContact(){document.getElementById('contact').scrollIntoView({behavior:'smooth'})}
+
+        // small parallax effect for background (kept for optional hero-bg use)
+        document.addEventListener('mousemove', (e)=>{
+            const bx = document.querySelector('.hero-bg');
+            const rx = (e.clientX - window.innerWidth/2)/60;
+            const ry = (e.clientY - window.innerHeight/2)/80;
+            if(bx) bx.style.transform = `translate(${rx}px,${ry}px) scale(1.02)`;
+        })
+
+        // Simple slider logic to preserve existing structure
+        (function(){
+          const slides = document.getElementById('slides');
+          const prev = document.getElementById('prevBtn');
+          const next = document.getElementById('nextBtn');
+          let idx = 0; // 0..2
+          function render(){ slides.style.transform = `translateX(-${idx*100}%)`; }
+          prev.addEventListener('click', ()=>{ idx = (idx+2)%3; render(); });
+          next.addEventListener('click', ()=>{ idx = (idx+1)%3; render(); });
+          setInterval(()=>{ idx = (idx+1)%3; render(); }, 6000);
+        })();
+
+        // lazy load images placeholder hook
+        document.addEventListener('DOMContentLoaded', ()=>{
+            document.querySelectorAll('img').forEach(img=>{
+                const src = img.getAttribute('src');
+                if(src && !src.startsWith('http')){
+                    // keep placeholder hook; replace asset names above with real images in your project
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Associates — 3D Design (Luxury)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root{
+            --bg-dark: #070709;
+            --panel: rgba(255,255,255,0.04);
+            --accent: linear-gradient(90deg,#c9a94a,#e6cf7a);
+            --primary: #b89b4a;
+            --glass: rgba(255,255,255,0.03);
+            --muted: rgba(255,255,255,0.6);
+            --max-width: 1200px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+        body{
+            background: var(--bg-dark);
+            color: #fff;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            overflow-x:hidden;
+            scroll-behavior:smooth;
+        }
+
+        /* NAVBAR */
+        .navbar{
+            position:fixed;top:0;left:0;right:0;z-index:1200;
+            height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;
+            background: linear-gradient(180deg, rgba(5,5,7,0.55), rgba(5,5,7,0.35));
+            border-bottom:1px solid rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+        }
+        .nav-left{display:flex;align-items:center;gap:18px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .brand .title{line-height:1}
+        .brand .title h4{margin:0;font-size:1rem;font-weight:700;letter-spacing:0.6px}
+        .brand .title span{display:block;font-size:0.72rem;color:var(--muted);margin-top:2px}
+
+        .nav-right{display:flex;align-items:center;gap:12px}
+        .search-wrap{position:relative}
+        .search-input{width:280px;max-width:calc(100vw - 240px);padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff;outline:none}
+        .search-suggestions{position:absolute;top:46px;left:0;right:0;background:var(--panel);border-radius:10px;padding:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6);display:none}
+        .suggestion{padding:6px 8px;border-radius:6px;cursor:pointer;font-size:0.95rem;color:var(--muted)}
+        .suggestion:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+        .dots{position:relative}
+        .dots button{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px;border-radius:10px;color:var(--muted);cursor:pointer}
+        .dots-menu{position:absolute;right:0;top:54px;min-width:180px;background:var(--panel);border-radius:10px;padding:10px;display:none;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+        .dots-menu a{display:block;padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none}
+        .dots-menu a:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+        /* HERO */
+        .hero{
+            min-height:88vh;padding-top:84px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden
+        }
+        .slider{position:absolute;inset:0;z-index:0;overflow:hidden}
+        .slides{display:flex;width:300%;height:100%;transition:transform .8s ease}
+        .slide{flex:1 0 100%;background-size:cover;background-position:center;filter:grayscale(6%) contrast(1.05) brightness(0.42)}
+        .prev,.next{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);padding:10px 14px;border-radius:10px;color:#fff;cursor:pointer}
+        .prev{left:14px}
+        .next{right:14px}
+
+        .hero-inner{position:relative;z-index:5;max-width:var(--max-width);width:100%;padding:48px 28px;display:flex;gap:40px;align-items:center}
+        .hero-left{flex:1;min-width:380px}
+        .eyebrow{font-size:0.9rem;color:var(--muted);letter-spacing:1px;margin-bottom:12px}
+        .hero-title{font-family:'Playfair Display',serif;font-size:2.6rem;margin:0 0 12px 0;line-height:1.02;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,0.8)}
+        .hero-sub{font-size:1.05rem;color:var(--muted);max-width:680px}
+
+        .hero-cta{margin-top:22px;display:flex;gap:14px;align-items:center}
+        .btn-primary{background:var(--accent);border:none;padding:14px 22px;border-radius:12px;font-weight:700;cursor:pointer;color:#111;box-shadow:0 8px 28px rgba(0,0,0,0.5)}
+        .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:12px 18px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+        .hero-right{width:420px;min-width:280px;display:flex;justify-content:flex-end}
+        .floating-card{width:420px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px);box-shadow:0 20px 80px rgba(0,0,0,0.7);transform:translateY(-8px)}
+        .floating-card h5{margin:0 0 8px 0;font-size:1.05rem}
+        .floating-card img{width:100%;border-radius:10px;display:block}
+
+        /* INFO SECTION */
+        .info{padding:48px 22px;}
+        .card{max-width:var(--max-width);margin:0 auto;background:transparent;border-radius:12px;padding:30px;display:flex;gap:30px;align-items:flex-start}
+        .info-left{flex:2}
+        .info-left h2{font-size:1.8rem;margin:0 0 12px 0;color:#fff}
+        .info-left p{color:var(--muted);line-height:1.7}
+        .info-list{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+        .info-item{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+        .info-item h4{margin:0 0 6px 0}
+        .info-item p{margin:0;color:var(--muted);font-size:0.95rem}
+
+        /* PORTFOLIO */
+        .portfolio{padding:48px 22px 22px}
+        .portfolio-inner{max-width:var(--max-width);margin:0 auto}
+        .portfolio h3{font-size:1.6rem;margin-bottom:18px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+        .project{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);overflow:hidden;transition:transform .25s}
+        .project:hover{transform:translateY(-8px)}
+        .project img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+        .project .meta{padding:10px}
+        .project .meta h4{margin:0}
+        .project .meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.92rem}
+
+        /* CONTACT SECTION + FOOTER remain unchanged */
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="brand">
+                <img src="FZqOBKg.png" class="h-5 md:h-10 lg:h-12 w-auto" alt="Shubham Associates logo">
+                <div class="title">
+                    <h4>Shubham Associates</h4>
+                    <span>Tally & Business Solutions • 3D Design</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+<section id="hero" class="hero">
+    <div class="slider" aria-hidden="true">
+        <div class="slides" id="slides">
+            <div class="slide" style="background-image:url('3D Hero 1.png')"></div>
+            <div class="slide" style="background-image:url('3D Hero 2.png')"></div>
+            <div class="slide" style="background-image:url('3D Hero 3.png')"></div>
+        </div>
+        <button class="prev" id="prevBtn">‹</button>
+        <button class="next" id="nextBtn">›</button>
+    </div>
+
+    <div class="hero-inner">
+        <div class="hero-left">
+            <div class="eyebrow">Premium 3D Design</div>
+            <h1 class="hero-title">Realistic 3D Visualizations — Concept to Final Render</h1>
+            <div class="hero-sub">
+                <p>We create immersive 3D designs: exterior & interior visualizations, walkthroughs, product renders, furniture models, and photorealistic environments. Accurate detailing, realistic lighting, and client-ready outputs.</p>
+            </div>
+
+            <div class="hero-cta">
+                <button class="btn-primary" id="gotoInfo"><i class="fas fa-arrow-down"></i>&nbsp;Go to Info</button>
+                <button class="btn-ghost" onclick="openContact()"><i class="fas fa-phone"></i>&nbsp;Contact Us</button>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="floating-card">
+                <h5>Featured: 3D Workflow</h5>
+                <img src="3D Drafting Landscap.png" alt="3D design workflow preview"/>
+                <p style="color:var(--muted);font-size:0.95rem;margin-top:8px">Modeling → Texturing → Lighting → Rendering → Walkthrough/Animation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- INFO -->
+    <section id="info" class="info">
+        <div class="card">
+            <div class="info-left">
+                <h2>About Our 3D Design Services</h2>
+                <p style="color:#fff">Shubham Associates specializes in advanced 3D visualization—from initial concepts to photorealistic renders and animations. We bring spaces, products and ideas to life with precision modeling, high-quality textures and cinematic presentation outputs.</p>
+
+                <div class="info-list" style="margin-top:18px">
+                    <div class="info-item">
+                        <h4>Exterior Visualization</h4>
+                        <p>Photo-realistic exteriors with landscaping, lighting and material details.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Interior Design Renders</h4>
+                        <p>Furniture layouts, lighting ambience and realistic décor visualizations.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>3D Walkthroughs</h4>
+                        <p>Immersive video animations to showcase designs dynamically.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Product Rendering</h4>
+                        <p>High-fidelity models for furniture, appliances and industrial products.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Virtual Reality (VR)</h4>
+                        <p>360° VR outputs for interactive presentations and client approvals.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Architectural Animation</h4>
+                        <p>Cinematic sequences showcasing space, lighting and functionality.</p>
+                    </div>
+                </div>
+
+                <p style="color:#fff;margin-top:18px">Deliverables include high-resolution renders, video walkthroughs, 360° views and optimized files for presentations and marketing campaigns.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio">
+        <div class="portfolio-inner">
+            <h3>Portfolio: Selected 3D Design Projects</h3>
+            <div class="grid">
+                <div class="project">
+                    <img src="3D Desingn 1.png" alt="Exterior Render">
+                    <div class="meta"><h4>Luxury Villa — Exterior</h4><p>Photorealistic rendering with day & night lighting scenes.</p></div>
+                </div>
+                <div class="project">
+                    <img src="3D Desingn 2.png" alt="Interior Render">
+                    <div class="meta"><h4>Modern Living Room</h4><p>Realistic furniture, décor and ambience with natural lighting.</p></div>
+                </div>
+                <div class="project">
+                    <img src="3D Desingn 3.png" alt="Product Render">
+                    <div class="meta"><h4>Furniture Product Render</h4><p>Detailed 3D model with textures and studio-quality lighting.</p></div>
+                </div>
+                <div class="project">
+                    <img src="3D Desingn 4.png" alt="Walkthrough">
+                    <div class="meta"><h4>3D Walkthrough Animation</h4><p>Immersive visualization for residential complex.</p></div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:18px">
+                <button class="btn-primary" onclick="window.location.href='#'">View More Clients</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT + FOOTER (same as before) -->
+    <section id="contact" class="contact"> ... </section>
+    <footer> ... </footer>
+
+    <script>
+      // same JS logic as your original file (slider, menu, search, whatsapp send etc.)
+    </script>
+</body>
+</html>

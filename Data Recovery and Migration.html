@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tally Data Recovery & Migration — Shubham Associates</title>
+
+<!-- Fonts: Classic & Luxury -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- Fallback icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<style>
+/* ------------------- Base / Theme ------------------- */
+:root{
+  --bg-dark: #0b0f12;
+  --panel: rgba(255,255,255,0.04);
+  --glass: rgba(255,255,255,0.03);
+  --accent: linear-gradient(90deg,#b08968 0%, #f3d6b0 100%);
+  --accent-solid: #b08968;
+  --muted: rgba(255,255,255,0.65);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-strong: rgba(255,255,255,0.06);
+  --radius: 14px;
+  --max-width: 1200px;
+}
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent 6%),
+    radial-gradient(900px 500px at 90% 70%, rgba(255,255,255,0.02), transparent 8%),
+    var(--bg-dark);
+  color: #e9e9e9;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  overflow-x:hidden;
+}
+
+/* Container */
+.wrap{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:28px;
+}
+
+/* ------------------- NAVBAR ------------------- */
+.navbar{
+  position:fixed;
+  top:18px;
+  left:0;
+  right:0;
+  z-index:9999;
+  display:flex;
+  justify-content:center;
+  pointer-events:none;
+}
+.navbar-inner{
+  width:calc(100% - 56px);
+  max-width:1200px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius:18px;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  pointer-events:auto;
+  box-shadow: 0 6px 30px rgba(2,6,12,0.6);
+}
+
+/* Left brand */
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  min-width:260px;
+}
+.brand img{
+  width:56px;
+  height:56px;
+  object-fit:contain;
+  border-radius:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:6px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.brand .brand-text{
+  line-height:1;
+}
+.brand .company{
+  font-family: 'Playfair Display', serif;
+  font-weight:700;
+  font-size:18px;
+  color:#fff;
+  letter-spacing:0.2px;
+}
+.brand .tag{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* Middle filler */
+.nav-spacer{flex:1}
+
+/* Right actions */
+.nav-actions{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.searchbox{
+  position:relative;
+  min-width:240px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,255,255,0.02);
+  padding:8px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.searchbox input{
+  flex:1;
+  background:transparent;
+  border:0;
+  outline:0;
+  color:var(--muted);
+  font-size:14px;
+}
+.nav-links{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:10px;
+}
+.nav-links a:hover{
+  color:#fff;
+  background: rgba(255,255,255,0.03);
+}
+
+/* ------------------- HERO / 16:9 full-screen ------------------- */
+.hero{
+  height:calc(100vh - 80px);
+  min-height:520px;
+  margin-top:36px;
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow: 0 40px 80px rgba(2,6,12,0.7);
+}
+
+/* image slider track (horizontal auto swap) */
+.hero .slider{
+  position:absolute;
+  inset:0;
+  display:flex;
+  height:100%;
+  width:100%;
+  will-change:transform;
+  overflow:hidden;
+}
+
+/* each slide is 100% of hero, arranged horizontally */
+.slide{
+  min-width:100%;
+  height:100%;
+  display:block;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  transform:translateZ(0);
+}
+
+/* subtle overlay texture */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(6,10,14,0.45), rgba(6,10,14,0.55));
+  pointer-events:none;
+}
+
+/* decorative grain */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: linear-gradient(transparent 50%, rgba(255,255,255,0.01) 50%);
+  background-size:100% 2px;
+  mix-blend-mode: overlay;
+  opacity:0.18;
+  pointer-events:none;
+}
+
+/* hero content overlay */
+.hero .overlay{
+  position:absolute;
+  left:6%;
+  right:6%;
+  top:12%;
+  max-width:840px;
+  z-index:6;
+  color:#fff;
+  text-shadow: 0 6px 30px rgba(2,6,12,0.8);
+}
+.hero h1{
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4.4vw, 48px);
+  line-height:1.03;
+  margin-bottom:12px;
+  letter-spacing:0.2px;
+  font-weight:800;
+  color: #fff;
+}
+.hero p.lead{
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: rgba(255,255,255,0.88);
+  margin-bottom:18px;
+  max-width:780px;
+}
+
+/* CTA button */
+.cta-row{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-top:10px;
+}
+.btn-primary{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background: var(--accent);
+  color:#0b0f12;
+  border-radius:12px;
+  padding:12px 18px;
+  font-weight:700;
+  cursor:pointer;
+  border:0;
+  box-shadow: 0 10px 30px rgba(12,10,8,0.45);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-primary:hover{ transform: translateY(-4px); box-shadow: 0 24px 60px rgba(12,10,8,0.6); }
+
+.btn-ghost{
+  background:transparent;
+  color:var(--muted);
+  border:1px solid rgba(255,255,255,0.06);
+  padding:10px 14px;
+  border-radius:10px;
+}
+
+/* small slider controls bottom-left */
+.hero .slide-controls{
+  position:absolute;
+  bottom:18px;
+  left:6%;
+  z-index:9;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.06);
+  cursor:pointer;
+}
+.dot.active{ background:#fff; transform:scale(1.15) }
+
+/* ------------------- Section styles ------------------- */
+.section{
+  padding:80px 0;
+  position:relative;
+}
+.container{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* Info section top after clicking more info */
+.info{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  border-radius:16px;
+  padding:36px;
+  border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 18px 40px rgba(1,2,4,0.6);
+}
+
+/* Title */
+.section-title{
+  display:flex;
+  align-items:baseline;
+  gap:18px;
+  margin-bottom:20px;
+}
+.section-title h2{
+  font-family:'Playfair Display', serif;
+  font-size:28px;
+  color:#fff;
+  margin:0;
+  letter-spacing:0.2px;
+}
+.section-title p.sub{
+  color:var(--muted);
+  margin-left:auto;
+}
+
+/* content columns */
+.columns{
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap:28px;
+  align-items:start;
+}
+@media(max-width:980px){
+  .columns{ grid-template-columns: 1fr; }
+}
+
+/* main copy */
+.copy p{
+  color: rgba(255,255,255,0.87);
+  font-size:15px;
+  margin-bottom:12px;
+}
+.copy ul{ margin-left:18px; color:var(--muted); list-style: none; padding-left:0; }
+.copy ul li{
+  position:relative;
+  padding-left:28px;
+  margin-bottom:10px;
+  color:rgba(255,255,255,0.85);
+}
+.copy ul li:before{
+  content: "✔";
+  position:absolute;
+  left:0; top:0;
+  font-size:12px;
+  color:var(--accent-solid);
+  font-weight:800;
+}
+
+/* right panel features */
+.features{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.03);
+}
+.features h4{ font-family: 'Playfair Display', serif; margin-bottom:6px; color:#fff; font-size:18px; }
+.feature-list{ display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+.feature-item{
+  display:flex; gap:12px; align-items:center;
+  padding:10px; border-radius:10px;
+  border:1px solid rgba(255,255,255,0.02);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+}
+.feature-item i{ font-size:16px; color:var(--accent-solid); width:28px; text-align:center; }
+
+/* ------------------- Portfolio with side animation ------------------- */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:18px;
+  margin-top:20px;
+}
+@media(max-width:1100px){ .portfolio-grid{ grid-template-columns: repeat(2,1fr); } }
+@media(max-width:720px){ .portfolio-grid{ grid-template-columns: 1fr; } }
+
+.port-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  display:flex;
+  gap:12px;
+  align-items:center;
+  overflow:hidden;
+  transform: translateY(12px);
+  opacity:0;
+  transition: transform .6s cubic-bezier(.2,.9,.2,1), opacity .6s;
+}
+.port-card.visible{ transform:none; opacity:1; }
+
+/* image preview inside card */
+.port-card img{
+  width:110px;
+  height:72px;
+  object-fit:cover;
+  border-radius:8px;
+  flex-shrink:0;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* client list */
+.client-list{ display:flex; gap:10px; margin-top:14px; align-items:center; flex-wrap:wrap }
+.client-item{
+  display:flex; gap:8px; align-items:center;
+  padding:8px 10px; border-radius:10px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.02);
+  font-size:13px;
+}
+
+/* small floating badges */
+.badge{
+  position:absolute;
+  right:14px;
+  top:14px;
+  background: rgba(0,0,0,0.35);
+  padding:8px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  font-size:13px;
+}
+
+/* ------------------- Footer with logo(left) + GUI contact form(right) ------------------- */
+.footer{
+  margin-top:48px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:28px;
+  border-radius:12px;
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.footer-left{
+  flex: 0 0 320px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.footer-left img{ width:74px; height:74px; border-radius:12px; object-fit:contain; background:rgba(255,255,255,0.02); padding:8px; border:1px solid rgba(255,255,255,0.03); }
+.footer-left .meta{ font-family:'Playfair Display', serif; color:#fff; }
+.footer-left .meta h3{ font-size:18px; margin-bottom:6px; }
+.footer-left .meta p{ font-size:13px; color:var(--muted) }
+
+/* contact form (GUI-heavy) */
+.contact-form{
+  flex:1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  border-radius:12px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+@media(max-width:780px){ .form-grid{ grid-template-columns:1fr; } }
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.field label{
+  font-size:12px;
+  color:var(--muted);
+}
+.field input, .field textarea, .field select{
+  background:rgba(0,0,0,0.28);
+  border:1px solid rgba(255,255,255,0.03);
+  padding:12px;
+  border-radius:10px;
+  color:#fff;
+  outline:0;
+  font-size:14px;
+}
+.field textarea{ min-height:120px; resize:vertical; }
+
+.form-actions{
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  margin-top:12px;
+}
+.btn-send{
+  background:var(--accent);
+  color:#0b0f12;
+  padding:12px 18px;
+  font-weight:700;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+}
+.btn-reset{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03); padding:10px 12px; border-radius:10px; }
+
+/* small footer note */
+.copy-note{ margin-top:12px; font-size:13px; color:var(--muted) }
+
+/* ------------------- Animations & helpers ------------------- */
+.fade-up{ transform: translateY(18px); opacity:0; transition: all .6s cubic-bezier(.2,.9,.2,1); }
+.fade-up.visible{ transform:none; opacity:1; }
+.slide-left{ transform: translateX(28px); opacity:0; transition: all .6s cubic-bezier(.2,.9,.2,1); }
+.slide-left.visible{ transform:none; opacity:1; }
+
+/* scrollbar */
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-thumb{ background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border-radius:10px; border:2px solid rgba(0,0,0,0); }
+
+/* small responsive tweaks */
+@media(max-width:720px){
+  .navbar-inner{ padding:10px; border-radius:12px; }
+  .brand .company{ font-size:14px; }
+  .hero .overlay{ left:5%; right:5%; top:8%; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="brand">
+      <!-- Replace "logo.png" with your real left-side PNG -->
+      <img src="FZqOBKg.png" alt="Company Logo" id="brand-logo">
+      <div class="brand-text">
+        <div class="company">Shubham Associates</div>
+        <div class="tag">Tally & Business Solutions and Autocad Designing</div>
+      </div>
+    </div>
+
+    <div class="nav-spacer"></div>
+
+    <div class="nav-actions">
+      <div class="searchbox" role="search">
+        <i class="fa fa-search" style="opacity:.7"></i>
+        <input type="search" id="site-search" placeholder="Search services, clients, or topics..." aria-label="Search site">
+      </div>
+
+      <div class="nav-links">
+        <a href="#home" class="nav-home">Home</a>
+        <a href="#services" class="nav-services">Services</a>
+        <a href="#contact" class="nav-contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero" aria-label="Hero: Tally Data Recovery and Migration">
+  <!-- slider (images horizontally arranged) -->
+  <div class="slider" id="hero-slider" aria-hidden="false">
+    <div class="slide" style="background-image: url('Autocad\ work\ Image.png');" data-index="0"></div>
+    <div class="slide" style="background-image: url('Logo\ and\ Branding.png');" data-index="1"></div>
+    <div class="slide" style="background-image: url('Autocad\ work\ Image.png');" data-index="2"></div>
+  </div>
+
+  <!-- overlay content -->
+  <div class="overlay">
+    <h1>Tally Data Recovery & Migration</h1>
+    <p class="lead">Securely restore lost Tally ledgers, vouchers and migrate your ERP accounting data to modern cloud systems — zero surprises, full audit trace, and enterprise-grade safety.</p>
+
+    <div class="cta-row">
+      <button class="btn-primary" id="more-info-btn" title="More info — scroll down">
+        <i class="fas fa-file-invoice-dollar"></i> More Info
+      </button>
+
+      <button class="btn-ghost" id="order-now-hero" onclick="window.open('tel:9414717878')">
+        <i class="fas fa-phone"></i> Order Now
+      </button>
+    </div>
+  </div>
+
+  <!-- small slider dots -->
+  <div class="slide-controls" id="slider-dots" aria-hidden="false">
+    <div class="dot active" data-dot="0" title="Slide 1"></div>
+    <div class="dot" data-dot="1" title="Slide 2"></div>
+    <div class="dot" data-dot="2" title="Slide 3"></div>
+  </div>
+
+  <!-- decorative badge -->
+  <div class="badge">Tally • ERP • Secure</div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="wrap" id="main-wrap">
+
+  <!-- INFO SECTION (scroll target) -->
+  <section id="services" class="section">
+    <div class="container info fade-up" id="info-panel">
+      <div class="section-title">
+        <h2>Tally Data Recovery & Migration — Full Service</h2>
+        <p class="sub">Comprehensive — Secure — Audit-ready</p>
+      </div>
+
+      <div class="columns">
+        <div class="copy">
+          <p>
+            At <strong>Shubham Associates</strong> we handle Tally ERP data recovery and migration with a strict protocol:
+            preserving original voucher integrity, verifying balances, and delivering import-ready files for your destination system.
+            Our process is built for minimal downtime and maximal compliance.
+          </p>
+
+          <p>
+            <strong>How we approach it (overview):</strong>
+          </p>
+
+          <ul>
+            <li>Initial forensic scan to map recoverable Tally files and check file health.</li>
+            <li>Isolated recovery on secure workstations to prevent further corruption.</li>
+            <li>Reconstruction of ledgers, vouchers, and masters with full timestamp trace.</li>
+            <li>Validation & reconciliation against backup/statement data.</li>
+            <li>Migration scripts to move data to cloud ERP or updated Tally versions, with trial import.</li>
+            <li>Post-migration verification, report, and optional training session for staff.</li>
+          </ul>
+
+          <p><strong>Why choose this service?</strong></p>
+          <ul>
+            <li>Fast triage — we provide the recovery estimate within hours of initial analysis.</li>
+            <li>Secure chain of custody for sensitive financial files.</li>
+            <li>Audit-ready logs, detailed reconciliation, and human-reviewed fixes.</li>
+          </ul>
+
+          <p style="margin-top:10px"><strong>Use-cases:</strong> accidental deletion, corrupted ERP files after crash, failed upgrades, ransomware/formatting incidents, hard-disk failure, and migration to newer accounts platforms.</p>
+        </div>
+
+        <aside class="features slide-left" aria-labelledby="">
+          <h4>Key Features & Deliverables</h4>
+
+          <div class="feature-list">
+            <div class="feature-item"><i class="fas fa-shield-alt"></i><div><strong>Secure Forensic Recovery</strong><div style="font-size:12px;color:var(--muted)">Isolated environment, no network exposure</div></div></div>
+            <div class="feature-item"><i class="fas fa-exchange-alt"></i><div><strong>Seamless Migration</strong><div style="font-size:12px;color:var(--muted)">Tally ↔ Cloud / Tally↔Tally conversions</div></div></div>
+            <div class="feature-item"><i class="fas fa-file-invoice"></i><div><strong>Voucher Integrity</strong><div style="font-size:12px;color:var(--muted)">All vouchers restored with timestamps and narrations</div></div></div>
+            <div class="feature-item"><i class="fas fa-user-shield"></i><div><strong>Compliance Reports</strong><div style="font-size:12px;color:var(--muted)">Reconciliation & audit logs for every step</div></div></div>
+            <div class="feature-item"><i class="fas fa-headset"></i><div><strong>24/7 Support</strong><div style="font-size:12px;color:var(--muted)">Remote & on-site assistance available</div></div></div>
+          </div>
+
+          <div style="margin-top:16px; font-size:13px; color:var(--muted)">
+            <strong>Deliverables:</strong>
+            <div>- Recovered .TDF/.DAT files (where applicable)</div>
+            <div>- Import-ready Tally data package</div>
+            <div>- Migration checklist and reconciliation report</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES (full width banners) -->
+  <section class="section" aria-label="Key features">
+    <div class="container">
+      <div class="info fade-up" style="padding:30px">
+        <div class="section-title">
+          <h2>Highlights — Why our approach stands apart</h2>
+          <p class="sub">Technical depth + Accounting-first mindset</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:18px;">
+          <div class="features" style="padding:18px">
+            <h4>Industry-grade Tools</h4>
+            <p style="color:var(--muted)">We use validated recovery utilities combined with custom scripts to rebuild inconsistent ledgers and invoice sequences.</p>
+            <div style="margin-top:12px" class="client-list">
+              <div class="client-item"><i class="fas fa-check"></i> Forensic isolation</div>
+              <div class="client-item"><i class="fas fa-check"></i> Hash-validation</div>
+            </div>
+          </div>
+
+          <div class="features" style="padding:18px">
+            <h4>Accounting-first Validation</h4>
+            <p style="color:var(--muted)">Every recovered voucher is human-reviewed by an accounts specialist to ensure books balance and ledgers align.</p>
+            <div style="margin-top:12px" class="client-list">
+              <div class="client-item"><i class="fas fa-balance-scale"></i> Trial balance match</div>
+              <div class="client-item"><i class="fas fa-file-alt"></i> Narration checks</div>
+            </div>
+          </div>
+
+          <div class="features" style="padding:18px">
+            <h4>Migration & Automation</h4>
+            <p style="color:var(--muted)">We produce scripts for automated import to target systems and documented manual steps when automation isn't viable.</p>
+            <div style="margin-top:12px" class="client-list">
+              <div class="client-item"><i class="fas fa-code"></i> Scripted imports</div>
+              <div class="client-item"><i class="fas fa-user-friends"></i> Training & handover</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio" aria-label="Portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h2>Portfolio — Selected Projects</h2>
+        <p class="sub">Real recoveries & migrations we've completed</p>
+      </div>
+
+      <div class="portfolio-grid" id="portfolio-grid">
+        <!-- example cards -->
+        <div class="port-card fade-up">
+          <img src="Working Team.png" alt="Database Recovery">
+          <div>
+            <strong>Database Recovery — Manufacturing</strong>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px">Restored 3 years of vouchers after a disk failure. Full reconciliation provided.</div>
+            <div style="margin-top:8px" class="client-list">
+              <div class="client-item"><i class="fas fa-building"></i> XYZ Industries</div>
+              <div class="client-item"><i class="fas fa-user-tie"></i> CFO assistance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="port-card fade-up">
+          <img src="generated-image.png" alt="ERP Migration">
+          <div>
+            <strong>ERP Migration — Retail Chain</strong>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px">Migrated 120 stores' sales & inventory data to cloud ERP with zero downtime.</div>
+            <div style="margin-top:8px" class="client-list">
+              <div class="client-item"><i class="fas fa-store"></i> RetailCo</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="port-card fade-up">
+          <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=7890abcd1234" alt="RAID Recovery">
+          <div>
+            <strong>RAID Server Recovery — Logistics</strong>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px">Recovered shipment invoices & vendor ledgers from a failed RAID array.</div>
+            <div style="margin-top:8px" class="client-list">
+              <div class="client-item"><i class="fas fa-truck"></i> FastMove Ltd.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="section">
+    <div class="container info fade-up" style="display:flex; align-items:center; justify-content:space-between; gap:18px;">
+      <div>
+        <h2 style="font-size:20px">Ready to recover or migrate your Tally data?</h2>
+        <p style="color:var(--muted)">Contact us for immediate analysis and secure recovery plan. We start with a no-cost triage.</p>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <button class="btn-primary" onclick="window.open('tel:9414717878')"><i class="fas fa-phone"></i> Call 9414717878</button>
+        <button class="btn-ghost" id="open-contact-bottom"><i class="fas fa-envelope"></i> Open Contact Form</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (left logo/name, right GUI contact form) -->
+  <footer class="footer section" id="contact" aria-label="Contact & Footer">
+    <div class="footer-left">
+      <img src="FZqOBKg.png" alt="Shubham Associates logo">
+      <div class="meta">
+        <h3>Shubham Associates</h3>
+        <p>Tally & Business Solutions and Autocad Designing</p>
+        <p style="margin-top:8px;color:var(--muted)">Registered Office: Pune, Maharashtra • GST-ready procedures • Confidential handling</p>
+      </div>
+    </div>
+
+    <form id="lead-form">
+  <div class="field">
+    <label for="fullname">Full name</label>
+    <input id="fullname" type="text" placeholder="Your full name" required>
+  </div>
+
+  <div class="field">
+    <label for="company">Company / Entity</label>
+    <input id="company" type="text" placeholder="Company name (optional)">
+  </div>
+
+  <div class="field">
+    <label for="phone">Phone</label>
+    <input id="phone" type="tel" placeholder="+91 9XXXXXXXXX" required>
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="name@example.com">
+  </div>
+
+  <div class="field">
+    <label for="service">Service Required</label>
+    <select id="service">
+      <option>Tally Data Recovery</option>
+      <option>ERP / Tally Migration</option>
+      <option>Backup & Archiving</option>
+      <option>On-site Support</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="message">Brief description (what happened?)</label>
+    <textarea id="message" placeholder="Example: Hard disk crashed, Tally data folder looks corrupted..."></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn-reset" type="reset">Reset</button>
+    <button class="btn-send" id="send-btn" type="submit">
+      <i class="fas fa-paper-plane"></i> Send Request
+    </button>
+  </div>
+</form>
+
+<script>
+document.getElementById("lead-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let name = document.getElementById("fullname").value;
+  let company = document.getElementById("company").value;
+  let phone = document.getElementById("phone").value;
+  let email = document.getElementById("email").value;
+  let service = document.getElementById("service").value;
+  let message = document.getElementById("message").value;
+
+  // ✅ यहाँ अपना WhatsApp नंबर डालो (91 के साथ, बिना + और space)
+  let whatsappNumber = "919414717878";
+
+  let whatsappMessage =
+    "📌 New Service Request:%0A" +
+    "👤 Name: " + name + "%0A" +
+    "🏢 Company: " + (company || "N/A") + "%0A" +
+    "📞 Phone: " + phone + "%0A" +
+    "✉️ Email: " + (email || "N/A") + "%0A" +
+    "🛠 Service: " + service + "%0A" +
+    "📝 Message: " + (message || "No description");
+
+  // ✅ Mobile detect
+  let isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+
+  let url = isMobile 
+    ? "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + whatsappMessage
+    : "https://web.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + whatsappMessage;
+
+  window.open(url, "_blank");
+});
+</script>
+
+        <div class="copy-note" style="margin-top:12px">We treat all financial data as confidential. By contacting us you agree to share the files required for triage.</div>
+      </form>
+    </div>
+  </footer>
+
+  <div style="height:36px"></div>
+
+</main>
+
+<!-- ------------------- Scripts ------------------- -->
+<script>
+/* ----------------- HERO SLIDER (horizontal auto-swap + dots) ----------------- */
+(function(){
+  const slider = document.getElementById('hero-slider');
+  const slides = Array.from(slider.querySelectorAll('.slide'));
+  const dots = Array.from(document.querySelectorAll('.dot'));
+  let idx = 0;
+  let width = slider.clientWidth;
+  let autoplay = true;
+  let timer = null;
+  const AUTO_MS = 4200;
+
+  function goTo(i, smooth = true){
+    idx = (i + slides.length) % slides.length;
+    const x = -idx * slider.clientWidth;
+    slider.style.transition = smooth ? 'transform 0.9s cubic-bezier(.2,.9,.2,1)' : 'none';
+    slider.style.transform = `translateX(${x}px)`;
+    dots.forEach(d => d.classList.remove('active'));
+    if(dots[idx]) dots[idx].classList.add('active');
+  }
+
+  // click dots
+  dots.forEach((d, i) => d.addEventListener('click', ()=> { goTo(i); resetTimer(); }));
+
+  // autoplay
+  function startTimer(){
+    if(timer) clearInterval(timer);
+    timer = setInterval(()=> { goTo(idx+1); }, AUTO_MS);
+  }
+  function resetTimer(){ if(autoplay) startTimer(); }
+
+  // pause on hover
+  slider.addEventListener('mouseenter', ()=> { autoplay = false; if(timer) clearInterval(timer); });
+  slider.addEventListener('mouseleave', ()=> { autoplay = true; startTimer(); });
+
+  // resize handler
+  window.addEventListener('resize', ()=> { goTo(idx, false); });
+
+  // initial
+  goTo(0, false);
+  startTimer();
+
+})();
+
+/* ----------------- Smooth scroll for More Info button and nav links ----------------- */
+document.getElementById('more-info-btn').addEventListener('click', function(){
+  document.getElementById('services').scrollIntoView({behavior:'smooth', block:'start'});
+});
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const href = a.getAttribute('href').replace('#','');
+    const el = document.getElementById(href);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+document.getElementById('open-contact-bottom').addEventListener('click', ()=> {
+  document.getElementById('contact').scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+/* -------------- Intersection animations for fade-up / slide-left etc -------------- */
+(function(){
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting){
+        ent.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.fade-up, .slide-left, .port-card').forEach(el=> observer.observe(el));
+})();
+
+/* -------------- Portfolio card reveal with slight stagger -------------- */
+(function(){
+  const cards = Array.from(document.querySelectorAll('.port-card'));
+  const grid = document.getElementById('portfolio-grid');
+  if(!grid) return;
+  let triggered = false;
+  new IntersectionObserver((entries, obs)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && !triggered){
+        triggered = true;
+        cards.forEach((c, i)=>{
+          setTimeout(()=> c.classList.add('visible'), i*120);
+        });
+        obs.disconnect();
+      }
+    });
+  }, {threshold:0.18}).observe(grid);
+})();
+
+/* -------------- Contact form UX + local validation (GUI heavy) -------------- */
+(function(){
+  const form = document.getElementById('lead-form');
+  const sendBtn = document.getElementById('send-btn');
+  const resetBtn = document.getElementById('reset-btn');
+
+  function showToast(msg, ok=true){
+    const el = document.createElement('div');
+    el.textContent = msg;
+    el.style.position='fixed';
+    el.style.right='18px';
+    el.style.bottom='18px';
+    el.style.padding='12px 16px';
+    el.style.background = ok ? 'linear-gradient(90deg,#b08968,#f3d6b0)' : 'rgba(255,50,50,0.9)';
+    el.style.color = ok ? '#0b0f12' : '#fff';
+    el.style.borderRadius='10px';
+    el.style.zIndex=99999;
+    el.style.boxShadow='0 10px 30px rgba(2,6,12,0.6)';
+    document.body.appendChild(el);
+    setTimeout(()=> el.remove(), 4200);
+  }
+
+  resetBtn.addEventListener('click', ()=> form.reset() );
+
+  sendBtn.addEventListener('click', ()=>{
+    const name = document.getElementById('fullname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
+
+    // basic validation
+    if(!name){ showToast('Please enter your name', false); document.getElementById('fullname').focus(); return; }
+    if(!phone || phone.replace(/\D/g,'').length < 9){ showToast('Please enter a valid phone number', false); document.getElementById('phone').focus(); return; }
+
+    // simulate submission (since we can't send real email from static file)
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending...';
+
+    // Create a pretend payload for user to copy if needed
+    const payload = {
+      name, phone, service, message, company: document.getElementById('company').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      timestamp: new Date().toISOString()
+    };
+
+    // show success and reveal JSON to user (download)
+    setTimeout(()=>{
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Request';
+      showToast('Request received locally. We will contact you shortly.');
+
+      // create downloadable JSON to emulate "received submission"
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'shubham_request_' + Date.now() + '.json';
+      a.style.display='none';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      form.reset();
+    }, 900);
+  });
+
+})();
+
+/* -------------- Accessibility: keyboard focus for navbar links -------------- */
+(function(){
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('keydown', (e)=> {
+      if(e.key === 'Enter') a.click();
+    });
+  });
+})();
+
+/* -------------- Image swapper improvement: allow left/right arrows via keyboard -------------- */
+(function(){
+  document.addEventListener('keydown', function(e){
+    const left = document.querySelector('.dot.active')?.previousElementSibling;
+    const right = document.querySelector('.dot.active')?.nextElementSibling;
+    if(e.key === 'ArrowLeft' && left) left.click();
+    if(e.key === 'ArrowRight' && right) right.click();
+  });
+})();
+
+/* -------------- Small visual polish: animate brand logo on hover -------------- */
+(function(){
+  const logo = document.getElementById('brand-logo');
+  logo.addEventListener('mouseenter', ()=> { logo.style.transform='rotate(-6deg) scale(1.02)'; logo.style.transition='transform .36s'; });
+  logo.addEventListener('mouseleave', ()=> { logo.style.transform='none'; });
+})();
+
+</script>
+
+</body>
+</html>

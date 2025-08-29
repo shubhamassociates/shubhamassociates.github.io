@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Training & SOPs — Shubham Associates</title>
+  <style>
+    :root{--bg:#0f1724;--card:#111827;--accent:#f6c23e;--muted:#9ca3af;--glass: rgba(255,255,255,0.03)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:linear-gradient(180deg,#071025 0%, #0f1724 100%);color:#e6eef8}
+    .container{max-width:1000px;margin:36px auto;padding:24px}
+    header{display:flex;gap:16px;align-items:center}
+    .logo{width:56px;height:56px;display:flex;align-items:center;justify-content:center}
+    .logo img{max-width:100%;max-height:100%;border-radius:10px}
+    h1{font-size:22px;margin:0}
+    p.lead{color:var(--muted);margin:6px 0 20px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .features{list-style:none;padding:0;margin:0}
+    .features li{padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
+    .muted{color:var(--muted);font-size:14px}
+    .cta{display:flex;flex-direction:column;gap:10px}
+    .btn{display:inline-block;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:600;text-align:center}
+    .btn-primary{background:var(--accent);color:#111}
+    .btn-outline{border:1px solid rgba(255,255,255,0.06);color:#e6eef8;background:transparent}
+    .small{font-size:13px;color:var(--muted)}
+    .lang-switch{display:flex;gap:8px;margin-bottom:12px}
+    .lang-switch button{padding:8px 10px;border-radius:8px;border:0;background:rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+    .lang-switch button.active{background:var(--accent);color:#111}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    @media(max-width:880px){.grid{grid-template-columns:1fr;}.logo{width:44px;height:44px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="FZqOBKg.png" alt="Shubham Associates Logo" />
+      </div>
+      <div>
+        <h1>Training &amp; SOPs — Shubham Associates</h1>
+        <p class="lead">Team training with standard operating procedures, checklists, and bilingual documentation (EN / HIN).</p>
+      </div>
+    </header>
+
+    <section class="grid" style="margin-top:20px">
+      <div>
+        <div class="card">
+          <div class="lang-switch" aria-hidden="false">
+            <button id="btn-en" class="active">English</button>
+            <button id="btn-hin">हिन्दी</button>
+          </div>
+
+          <!-- English content -->
+          <div id="en">
+            <h2 style="margin-top:0">What we offer</h2>
+            <ul class="features">
+              <li><strong>On-site &amp; remote sessions</strong> — Practical training delivered at your office or online (Zoom / Meet).</li>
+              <li><strong>Video guides &amp; documents</strong> — Recorded tutorials, step-by-step manuals and checklists for every process.</li>
+              <li><strong>Bilingual documentation (EN / HIN)</strong> — SOPs available in both English and Hindi for easy adoption by all staff.</li>
+              <li><strong>Certification paths</strong> — Certificates on completion to demonstrate competence and compliance.</li>
+            </ul>
+
+            <h3 style="margin-top:18px">Typical modules</h3>
+            <ul class="features">
+              <li>Accounting workflow (Tally ERP) — Ledgers, GST billing, reconciliation, month-end closing.</li>
+              <li>AutoCAD basics & standards — Drawing conventions, layers, plotting and file management.</li>
+              <li>Quality & compliance checklists — Audit-ready SOPs for daily and monthly tasks.</li>
+            </ul>
+
+            <p class="muted" style="margin-top:14px">Use this service to reduce errors, speed onboarding, and show clients your organised processes.</p>
+          </div>
+
+          <!-- Hindi content -->
+          <div id="hin" style="display:none">
+            <h2 style="margin-top:0">हम क्या प्रदान करते हैं</h2>
+            <ul class="features">
+              <li><strong>ऑन-साइट और रिमोट सत्र</strong> — आपके कार्यालय में या ऑनलाइन (Zoom/Meet) प्रशिक्षण।</li>
+              <li><strong>वीडियो गाइड और दस्तावेज</strong> — रिकॉर्डेड ट्यूटोरियल, चरण-दर-चरण मैनुअल और चेकलिस्ट।</li>
+              <li><strong>द्विभाषी दस्तावेज (EN / HIN)</strong> — SOPs अंग्रेज़ी और हिंदी दोनों में उपलब्ध।</li>
+              <li><strong>प्रमाणपत्र पाथ</strong> — प्रशिक्षण पूर्ण होने पर प्रमाणपत्र दिया जाएगा।</li>
+            </ul>
+
+            <h3 style="margin-top:18px">सामान्य मॉड्यूल</h3>
+            <ul class="features">
+              <li>लेजर और GST वर्कफ्लो (Tally ERP) — बिलिंग, रिजंकिलिएशन, और महीने का क्लोज़।</li>
+              <li>AutoCAD मूल बातें और मानक — ड्रॉइंग कन्वेंशन, लेयर्स, और फाइल प्रबंधन।</li>
+              <li>क्वालिटी और अनुपालन चेकलिस्ट — दैनिक और मासिक कार्यों के लिए ऑडिट-रेडी SOPs।</li>
+            </ul>
+
+            <p class="muted" style="margin-top:14px">इस सेवा का उपयोग त्रुटियों को कम करने, ऑनबोर्डिंग को तेज करने और ग्राहकों के सामने व्यवस्थित प्रक्रियाएँ दिखाने के लिए करें।</p>
+          </div>
+
+          <div style="margin-top:18px" class="small">Note: Replace <code>logo.png</code> with your transparent PNG (recommended size 180×180). For internal SOP documents we can provide Word/PDF exports.</div>
+        </div>
+
+        <footer>Need customised SOPs (company-branded)? Send us process lists and we will convert them into audit-ready SOP documents.</footer>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin-top:0">Quick actions</h3>
+          <div class="cta">
+            <a class="btn btn-primary" href="mailto:shubhamassociates.pvt.ltd@gmail.com?subject=Request%20Training%20-%20Shubham%20Associates">Request Training</a>
+            <a class="btn btn-outline" href="index.html#contact">Contact / Quote</a>
+            <a class="btn btn-outline" href="#sop-sample">Download SOP Sample (PDF)</a>
+          </div>
+
+          <div style="margin-top:14px" class="small">
+            <strong>Delivery:</strong>
+            <div class="muted">We provide: Training plan • SOP manuals (Word/PDF) • Video library • Certificates.</div>
+          </div>
+
+          <div style="margin-top:12px" class="small">Estimated time: 1–4 weeks depending on scope. For an accurate quote, send the list of processes you want covered.</div>
+        </div>
+
+        <div id="contact" class="card" style="margin-top:14px">
+          <h4 style="margin:0 0 8px 0">Contact</h4>
+          <div class="small">Phone: <a href="tel:+91-9414717878" style="color:inherit; text-decoration:none">+91‑9414717878</a></div>
+          <div class="small">Email: <a href="mailto:shubhamassociates.pvt.ltd@gmail.com" style="color:inherit; text-decoration:none">shubhamassociates.pvt.ltd@gmail.com</a></div>
+          <div class="small" style="margin-top:8px">Or reply here with the main processes you want documented and I will prepare a sample SOP.</div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script>
+    const btnEn = document.getElementById('btn-en');
+    const btnHin = document.getElementById('btn-hin');
+    const en = document.getElementById('en');
+    const hin = document.getElementById('hin');
+
+    btnEn.addEventListener('click', ()=>{
+      en.style.display='block'; hin.style.display='none';
+      btnEn.classList.add('active'); btnHin.classList.remove('active');
+    });
+    btnHin.addEventListener('click', ()=>{
+      en.style.display='none'; hin.style.display='block';
+      btnHin.classList.add('active'); btnEn.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

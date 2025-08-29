@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AutoCAD Services | Shubham Associates</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts (classy + readable) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ------------------------------
+       Base + Metallic Theme Tweaks
+       ------------------------------ */
+    :root{
+      --metal-ink:#1b1e23;
+      --metal-900:#15171b;
+      --metal-800:#1b1f25;
+      --metal-700:#232833;
+      --metal-600:#2c323e;
+      --metal-500:#3a4250;
+      --gold-soft:#d5b46f;
+      --gold-bright:#f2d16b;
+      --gold-dim:#9b8650;
+      --silver-1:#c9d1d9;
+      --silver-2:#a9b2bd;
+      --accent-amber:#f59e0b;
+    }
+
+    html,body{
+      scroll-behavior:smooth;
+      background: linear-gradient(120deg, #f7f3ea 0%, #f0ece2 50%, #e9e4d8 100%);
+      color: var(--metal-800);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    /* Subtle metallic sheen for headers */
+    .metallic-text{
+      background: linear-gradient(90deg, var(--metal-800), var(--metal-600), var(--metal-800));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
+    /* Gold divider rule */
+    .rule-gold{
+      height:1px;
+      background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+    }
+
+    /* Glass surface for hero overlay and navbar */
+    .glass{
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(213,180,111,.25);
+    }
+
+    .nav-glass{
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.5));
+      border-bottom: 1px solid rgba(213,180,111,.28);
+    }
+
+    /* Hero background: light-toned technical drawing + gradient wash */
+    .hero{
+      position: relative;
+      min-height: 52vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(242,209,107,.20), rgba(255,255,255,.6) 35%, rgba(221,207,175,.35)),
+        url('https://images.unsplash.com/photo-1581594693700-8b16a3b0e2c6?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+    }
+
+    /* Hero subtle vignette and metallic lines */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 300px at 50% 0%, rgba(0,0,0,.06), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,0));
+      pointer-events:none;
+    }
+
+    /* Service cards: slim colorful runner line */
+    .service-card{
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffffff, #faf8f2);
+      border: 1px solid rgba(27,30,35,.08);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .service-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px rgba(27,30,35,.12);
+      border-color: rgba(213,180,111,.55);
+    }
+
+    /* The colorful running line (left side) */
+    .service-card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:4px;
+      background: linear-gradient(180deg,
+        #ff7a7a, #ffd166, #9be15d, #5ad7ff, #a78bfa, #ff7a7a);
+      background-size: 100% 300%;
+      animation: runLine 6s linear infinite;
+      opacity:.95;
+    }
+
+    @keyframes runLine{
+      0%{ background-position: 0% 0%; }
+      50%{ background-position: 0% 100%; }
+      100%{ background-position: 0% 0%; }
+    }
+
+    /* Number badge with metallic rim */
+    .num-badge{
+      background: linear-gradient(135deg, #f6efe0, #fff);
+      border: 1px solid rgba(213,180,111,.65);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 6px 16px rgba(27,30,35,.08);
+      color: var(--metal-800);
+    }
+
+    /* Buttons: soft gold */
+    .btn-gold{
+      background: linear-gradient(180deg, #f3d789, #e7c46b);
+      border: 1px solid rgba(213,180,111,.8);
+      color: #2c2c2c;
+      transition: filter .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+    .btn-gold:hover{
+      filter: brightness(.98);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(213,180,111,.25);
+    }
+
+    /* Search input style (minimal, human) */
+    .search{
+      border: 1px solid rgba(27,30,35,.12);
+      background: linear-gradient(180deg, #ffffff, #fafafa);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .search:focus{
+      border-color: rgba(213,180,111,.6);
+      box-shadow: 0 0 0 4px rgba(213,180,111,.18);
+      outline: none;
+    }
+
+    /* Footer contact bar floating look */
+    .contact-bar{
+      background: linear-gradient(180deg, #ffffff, #f8f5ee);
+      border-top: 1px solid rgba(213,180,111,.35);
+    }
+
+    /* Accessibility focus */
+    .focus-ring:focus{
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(79,70,229,.2), 0 0 0 1px rgba(27,30,35,.35) inset;
+      border-radius: 10px;
+    }
+
+    /* Make sure long pages scroll nicely on mobile too */
+    .container-safe{
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Small helper for subtle separators */
+    .hairline{
+      border-top: 1px solid rgba(27,30,35,.06);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================
+       Top Navigation / Search
+       ======================== -->
+  <header class="nav-glass sticky top-0 z-50">
+    <div class="container-safe py-3 flex items-center gap-4">
+      <a href="#" class="flex items-center gap-3 group focus-ring" aria-label="Shubham Associates — Home">
+    <img src="FZqOBKg.png" class="w-[10%]">
+        <div class="
+        </div>
+        <div class="leading-tight">
+          <div class="text-sm tracking-wide text-[var(--metal-700)]">Shubham Associates</div>
+          <div class="font-semibold metallic-text">AutoCAD Services</div>
+        </div>
+      </a>
+
+      <!-- Spacer -->
+      <div class="flex-1"></div>
+
+      <!-- Search -->
+      <div class="w-full max-w-xl">
+        <label for="serviceSearch" class="sr-only">Search services</label>
+        <input id="serviceSearch" type="search" placeholder="Search services… (e.g., 2D plan, electrical, 3D)"
+               class="search w-full rounded-xl px-4 py-2 text-[15px]" />
+      </div>
+
+      <!-- Contact link -->
+      <nav class="ml-4">
+        <a href="#contact" class="text-[15px] font-medium text-[var(--metal-700)] hover:text-[var(--metal-900)] focus-ring">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======
+       Hero
+       ====== -->
+  <section class="hero">
+    <div class="container-safe relative z-10">
+      <div class="glass rounded-2xl px-6 md:px-10 py-8 shadow-xl">
+        <h1 class="text-3xl md:text-4xl font-semibold metallic-text tracking-tight">
+          Precision Drawings, Human Touch.
+        </h1>
+        <p class="mt-3 text-[15px] md:text-[16px] text-[var(--metal-700)] max-w-3xl">
+          We craft clear, compliant, and presentation-ready AutoCAD deliverables—made for real projects and real people.
+          From floor plans to MEP layouts and 3D visuals, our focus is accuracy, clarity, and timely delivery.
+        </p>
+        <div class="mt-5 flex items-center gap-3">
+          <a href="#services" class="btn-gold rounded-lg px-4 py-2 text-[15px]">Explore Services</a>
+          <a href="#contact" class="rounded-lg px-4 py-2 text-[15px] border border-[rgba(27,30,35,.15)] hover:border-[rgba(213,180,111,.6)]">
+            Quick Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="rule-gold my-10"></div>
+
+  <!-- ===========================
+       Services Grid (2 rows x 3)
+       =========================== -->
+  <main id="services" class="container-safe pb-24">
+    <div class="mb-6">
+      <h2 class="text-2xl md:text-3xl font-semibold metallic-text">Our AutoCAD Services</h2>
+      <p class="mt-2 text-[15px] text-[var(--metal-700)]">
+        Search above to filter. Click “More Info” to open details in a new tab.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div id="serviceGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <article class="service-card rounded-2xl p-6 focus-ring" data-title="2d design drafting layouts plans" data-desc="professional 2d drafting layouts plans technical drawings">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-xl num-badge grid place-items-center text-sm font-semibold">1</div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-[17px]">2D Design</h3>
+            <p class="mt-1 text-[14px] text-[var(--metal-700)]">
+              Professional 2D drafting for layouts, plans, and technical drawings. Clean layers, clear dimensions, and tidy sheets ready to print.
+            </p>
+            <a href="2D Design.html" target="_blank" class="mt-3 inline-block btn-gold rounded-lg px-3 py-2 text-[14px]">More Info</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="service-card rounded-2xl p-6 focus-ring" data-title="architectural planning layouts space plan compliance" data-desc="complete architectural layouts space planning compliance drawings">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-xl num-badge grid place-items-center text-sm font-semibold">2</div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-[17px]">Architectural Planning</h3>
+            <p class="mt-1 text-[14px] text-[var(--metal-700)]">
+              Complete architectural layouts, practical space planning, and compliance-ready drawings that aid clear approvals and site execution.
+            </p>
+            <a href="Architechural Planning.html" target="_blank" class="mt-3 inline-block btn-gold rounded-lg px-3 py-2 text-[14px]">More Info</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="service-card rounded-2xl p-6 focus-ring" data-title="structural planning structure rebar detailing load calculation" data-desc="structural layouts reinforcement detailing load calculations">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-xl num-badge grid place-items-center text-sm font-semibold">3</div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-[17px]">Structural Planning</h3>
+            <p class="mt-1 text-[14px] text-[var(--metal-700)]">
+              Structural layouts with reinforcement details, schedules, and notes—produced with coordination in mind for consultants and site teams.
+            </p>
+            <a href="Structural Planning.html" target="_blank" class="mt-3 inline-block btn-gold rounded-lg px-3 py-2 text-[14px]">More Info</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="service-card rounded-2xl p-6 focus-ring" data-title="electrical plumbing mep layouts wiring pipe schematic" data-desc="detailed electrical and plumbing plans safe efficient installations mep">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-xl num-badge grid place-items-center text-sm font-semibold">4</div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-[17px]">Electrical &amp; Plumbing Layouts</h3>
+            <p class="mt-1 text-[14px] text-[var(--metal-700)]">
+              Clear MEP layouts with wiring routes, switchboards, pipe sizing, fixtures, and notes—practical drawings that reduce site confusion.
+            </p>
+            <a href="Electrical & Plumbing Layout.html" target="_blank" class="mt-3 inline-block btn-gold rounded-lg px-3 py-2 text-[14px]">More Info</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="service-card rounded-2xl p-6 focus-ring" data-title="interior designing plans furniture placement materials" data-desc="creative interior layouts furniture placement material specifications">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-xl num-badge grid place-items-center text-sm font-semibold">5</div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-[17px]">Interior Designing Plans</h3>
+            <p class="mt-1 text-[14px] text-[var(--metal-700)]">
+              Thoughtful interior layouts, furniture planning, and finishes—balancing function and aesthetics with clear, buildable details.
+            </p>
+            <a href="Interior Desingning Plans.html" target="_blank" class="mt-3 inline-block btn-gold rounded-lg px-3 py-2 text-[14px]">More Info</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="service-card rounded-2xl p-6 focus-ring" data-title="3d design modeling visualization rendering" data-desc="realistic 3d modeling and visualization for presentations approvals">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-xl num-badge grid place-items-center text-sm font-semibold">6</div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-[17px]">3D Design</h3>
+            <p class="mt-1 text-[14px] text-[var(--metal-700)]">
+              Realistic 3D modeling and visuals for client presentations and approvals—communicate design intent without ambiguity.
+            </p>
+            <a href="3D Drafting & Drawings.html" target="_blank" class="mt-3 inline-block btn-gold rounded-lg px-3 py-2 text-[14px]">More Info</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Light note to suggest scrolling; keeps page human -->
+    <div class="mt-10 hairline pt-6 text-[14px] text-[var(--metal-700)]">
+      Tip: Use the search on top to quickly jump to a specific service. Scroll for contact.
+    </div>
+  </main>
+
+  <!-- =========================
+       Contact Section (Anchor)
+       ========================= -->
+  <section id="contact" class="container-safe pb-28">
+  <div class="glass rounded-2xl px-6 md:px-10 py-8">
+    <h3 class="text-xl md:text-2xl font-semibold metallic-text">Get in touch</h3>
+    <p class="mt-2 text-[15px] text-[var(--metal-700)]">
+      Share your project scope (site area, floors, requirements) and preferred timelines. We’ll reply with a clear scope and estimate.
+    </p>
+
+    <form class="mt-6 grid md:grid-cols-2 gap-4" onsubmit="sendToWhatsApp(event)">
+      <div class="grid gap-2">
+        <label class="text-[13px] text-[var(--metal-700)]" for="name">Your Name</label>
+        <input id="name" type="text" required class="search rounded-xl px-4 py-2" placeholder="Enter your full name" />
+      </div>
+      <div class="grid gap-2">
+        <label class="text-[13px] text-[var(--metal-700)]" for="phone">Phone / WhatsApp</label>
+        <input id="phone" type="tel" required class="search rounded-xl px-4 py-2" placeholder="+91-XXXXXXXXXX" />
+      </div>
+      <div class="grid gap-2 md:col-span-2">
+        <label class="text-[13px] text-[var(--metal-700)]" for="message">Project Brief</label>
+        <textarea id="message" rows="4" class="search rounded-xl px-4 py-2" placeholder="Tell us about your plan, scope, and timelines"></textarea>
+      </div>
+      <div class="md:col-span-2">
+        <button type="submit" class="btn-gold rounded-lg px-5 py-2.5 text-[15px]">Send</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let message = document.getElementById("message").value;
+
+    let whatsappMessage = `Hello, my name is ${name}.%0AHere are my details:%0APhone: ${phone}%0AProject Brief: ${message}`;
+    let whatsappURL = `https://wa.me/919414717878?text=${whatsappMessage}`;
+
+    window.open(whatsappURL, "_blank");
+  }
+</script>
+
+
+  <!-- =========================
+       Bottom Contact Bar / CTA
+       ========================= -->
+  <footer class="contact-bar sticky bottom-0 z-40">
+    <div class="container-safe py-3 flex flex-col md:flex-row items-center gap-2 md:gap-4">
+      <div class="text-[14px] text-[var(--metal-700)]">
+        Questions? We’re happy to help.
+      </div>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-2">
+        <a href="tel:+919414717878" class="rounded-lg px-3 py-2 border border-[rgba(27,30,35,.15)] hover:border-[rgba(213,180,111,.6)] text-[14px]">Call</a>
+        <a href="https://wa.me/9414717878" target="_blank" class="rounded-lg px-3 py-2 border border-[rgba(27,30,35,.15)] hover:border-[rgba(213,180,111,.6)] text-[14px]">WhatsApp</a>
+        <a href="mailto:shubhamassociates.pvt.ltd@gmail.com" class="btn-gold rounded-lg px-3 py-2 text-[14px]">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================
+       Script: Search / Filter
+       ========================= -->
+  <script>
+    (function(){
+      const input = document.getElementById('serviceSearch');
+      const grid = document.getElementById('serviceGrid');
+      const cards = Array.from(grid.querySelectorAll('.service-card'));
+
+      function normalize(s){
+        return (s || '').toLowerCase().trim();
+      }
+
+      function filter(){
+        const q = normalize(input.value);
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const t = card.getAttribute('data-title') || '';
+          const d = card.getAttribute('data-desc') || '';
+          const hay = normalize(t + ' ' + d + ' ' + card.textContent);
+          const show = hay.includes(q);
+          card.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+
+        // If nothing matches, show a small humane note.
+        let emptyNote = document.getElementById('noMatches');
+        if (!visibleCount){
+          if (!emptyNote){
+            emptyNote = document.createElement('div');
+            emptyNote.id = 'noMatches';
+            emptyNote.className = 'mt-6 text-[14px] text-[var(--metal-700)]';
+            emptyNote.textContent = 'No matching services found. Try a different keyword, like “MEP”, “3D”, or “structural”.';
+            grid.parentElement.appendChild(emptyNote);
+          }
+        }else{
+          if (emptyNote) emptyNote.remove();
+        }
+      }
+
+      input.addEventListener('input', filter);
+    })();
+  </script>
+
+  <!-- Extra spacing to ensure scroll on short screens, while keeping layout light -->
+  <div class="h-10"></div>
+</body>
+</html>

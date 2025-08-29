@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management | Shubham Associates</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #D4AF37;
+            --secondary: #1a1a1a;
+            --accent: #8B4513;
+            --text: #e0e0e0;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --nav-bg: rgba(18, 18, 18, 0.95);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            transition: padding 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 30px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .brand-tagline {
+            font-size: 0.7rem;
+            color: var(--text);
+            margin-left: 10px;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar {
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        .search-bar input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 15px;
+            padding-right: 35px;
+            color: var(--text);
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+        
+        .search-bar input:focus {
+            width: 250px;
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 25px;
+        }
+        
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        
+        .hero-slider {
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .slide-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .info-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: var(--primary);
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Inventory Info Section */
+        .inventory-info {
+            background: var(--dark-bg);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateX(-50px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .info-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .info-card:nth-child(even) {
+            transform: translateX(50px);
+        }
+        
+        .info-card:nth-child(even).visible {
+            transform: translateX(0);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .info-card li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .info-card li:before {
+            content: '✓';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            background: linear-gradient(to bottom, var(--dark-bg), #0a0a0a);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .portfolio-title {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        /* Footer & Contact Form */
+        .footer {
+            background: #0a0a0a;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-form {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            color: var(--text);
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .search-bar {
+                display: none;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--nav-bg);
+                width: 250px;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                padding: 40px 20px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 80vh;
+            }
+            
+            .slide-overlay {
+                padding: 20px;
+                margin: 0 20px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .brand-tagline {
+                display: none;
+            }
+            
+            .slide-title {
+                font-size: 1.8rem;
+            }
+            
+            .slide-description {
+                font-size: 1rem;
+            }
+            
+            .info-btn, .submit-btn {
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="FZqOBKg.png" alt="Shubham Associates Logo" class="logo">
+            <div>
+                <div class="brand-name">SHUBHAM ASSOCIATES</div>
+                <div class="brand-tagline">Business Consulting & Inventory Management</div>
+            </div>
+        </div>
+        
+        <div class="nav-right">
+            <div class="search-bar">
+                <input type="text" placeholder="Search services...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Slider -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1596526131083-e8c633c3c6de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                <div class="slide-overlay">
+                    <h2 class="slide-title">Professional Inventory Management</h2>
+                    <p class="slide-description">Complete inventory management solutions for businesses of all sizes. Expert guidance to optimize your stock levels and reduce costs.</p>
+                    <button class="info-btn" onclick="scrollToSection('services')">Go to Info</button>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                <div class="slide-overlay">
+                    <h2 class="slide-title">Inventory Optimization</h2>
+                    <p class="slide-description">Maximize efficiency and minimize costs with our advanced inventory optimization strategies and real-time tracking systems.</p>
+                    <button class="info-btn" onclick="scrollToSection('services')">Go to Info</button>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                <div class="slide-overlay">
+                    <h2 class="slide-title">Warehouse Management</h2>
+                    <p class="slide-description">Streamline your warehouse operations with our comprehensive management solutions and inventory control systems.</p>
+                    <button class="info-btn" onclick="scrollToSection('services')">Go to Info</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-controls">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Inventory Information Section -->
+    <section class="section inventory-info" id="services">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Inventory Management Services</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Inventory Analysis</h3>
+                    <p>We conduct thorough analysis of your current inventory practices to identify areas for improvement and cost savings.</p>
+                    <ul>
+                        <li>Stock level optimization</li>
+                        <li>Demand forecasting</li>
+                        <li>ABC analysis implementation</li>
+                        <li>Turnover rate improvement</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Inventory System Setup</h3>
+                    <p>Our experts implement customized inventory management systems tailored to your business needs.</p>
+                    <ul>
+                        <li>Software selection & implementation</li>
+                        <li>Barcode/RFID system setup</li>
+                        <li>Inventory categorization</li>
+                        <li>Custom reporting solutions</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Warehouse Optimization</h3>
+                    <p>Maximize your storage efficiency and streamline operations with our warehouse optimization services.</p>
+                    <ul>
+                        <li>Layout planning & design</li>
+                        <li>Storage system recommendations</li>
+                        <li>Pick and pack process improvement</li>
+                        <li>Safety and compliance auditing</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Ongoing Management</h3>
+                    <p>We provide continuous support to ensure your inventory management remains efficient and effective.</p>
+                    <ul>
+                        <li>Regular inventory audits</li>
+                        <li>Performance monitoring</li>
+                        <li>Process refinement</li>
+                        <li>Staff training programs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Inventory Management Portfolio</h2>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Retail Inventory">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Retail Chain</h3>
+                        <p>Inventory system implementation for national retail chain</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Manufacturing Inventory">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Manufacturing Plant</h3>
+                        <p>Raw material inventory management system</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1600861194945-b4cb3b9ac9f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Inventory">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">E-commerce Business</h3>
+                        <p>Multi-channel inventory synchronization solution</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pharmaceutical Inventory">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Pharmaceutical Company</h3>
+                        <p>Temperature-controlled inventory management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact Section -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="FZqOBKg.png" alt="Shubham Associates Logo">
+                    <p>Providing expert inventory management services and business consulting to optimize your operations.</p>
+                    <a href="tel:9414717878"><i class="fas fa-phone"></i> 9414717878</a>
+                    <a href="mailto:shubhamassociates.pvt.ltd@gmail.com"><i class="fas fa-envelope"></i> shubhamassociates.pvt.ltd@gmail.com</a>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Shubham Associates. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Hero slider functionality
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+            currentSlide = n;
+        }
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+            });
+        });
+        
+        // Auto slide change
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }, 5000);
+        
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            navMenu.classList.remove('active');
+        }
+        
+        // Animate info cards on scroll
+        function checkScroll() {
+            const infoCards = document.querySelectorAll('.info-card');
+            
+            infoCards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (cardPosition < screenPosition) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        // Initial check
+        checkScroll();
+        
+        // Contact form WhatsApp integration
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AMessage: ${message}`;
+            const whatsappUrl = `https://wa.me/919414717878?text=${whatsappMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            contactForm.reset();
+        });
+        
+        // Close menu when clicking on nav links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

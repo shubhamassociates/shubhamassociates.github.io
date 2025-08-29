@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shubham Associates — Company Creation & Configuration</title>
+  <meta name="description" content="Company Creation & Configuration services for Tally & AutoCAD — Shubham Associates">
+  <style>
+    /* ------------------------------------------------------------------
+       THEME: Dark - Luxury - Smooth
+       This single-file page includes:
+         - loading animation overlay
+         - 16:9 hero carousel with high-quality SVG-based images (data-URI)
+         - sticky navbar (left logo + company name/tagline, right search + menu)
+         - company creation content + key points
+         - portfolio with generated thumbnail images
+         - contact form and footer with logo
+         - cookie swipe-up that accepts/declines
+       ------------------------------------------------------------------ */
+
+    :root{
+      --bg:#0b0d10;
+      --card:#0f1216;
+      --muted:#9aa4b2;
+      --accent:#d4a72c; /* luxury gold */
+      --accent-2:#2d5cff;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      --max-width:1180px;
+      --glass-2: rgba(255,255,255,0.02);
+      --soft-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      color-scheme: dark;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent), linear-gradient(180deg,#060708 0%, #0b0d10 100%); color:#e6eef8}
+
+    /* -------------------- Loader Overlay -------------------- */
+    .loader-overlay{
+      position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;background:linear-gradient(180deg, rgba(4,6,8,0.95), rgba(4,6,8,0.98));backdrop-filter:blur(6px);
+      transition:opacity .5s ease,visibility .5s ease;opacity:1;visibility:visible
+    }
+    .loader-box{width:360px;max-width:92%;padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 8px 60px rgba(0,0,0,0.6);text-align:center}
+    .loader-logo{width:64px;height:64px;margin:0 auto 12px;border-radius:12px;background:linear-gradient(135deg,var(--accent), #b77d1f);display:flex;align-items:center;justify-content:center;font-weight:800;color:#071428}
+    .loader-logo svg{filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6));}
+    .loader-title{font-size:1.25rem;font-weight:700;margin-bottom:6px;color:#fff}
+    .loader-sub{font-size:0.95rem;color:var(--muted);margin-bottom:14px}
+
+    .spinner{width:86px;height:86px;border-radius:50%;display:inline-grid;place-items:center;background:conic-gradient(var(--accent) 0 20%, transparent 20% 100%);position:relative;animation:spin 1.2s linear infinite}
+    .spinner::after{content:'';width:62px;height:62px;border-radius:50%;background:linear-gradient(180deg,#071428 0%, #0c1117 100%);display:block}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .loader-progress{height:8px;background:linear-gradient(90deg,var(--accent), #ffd37f);border-radius:999px;margin-top:14px;overflow:hidden}
+    .loader-progress > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#ffd37f,var(--accent));animation:progress 2.5s linear forwards}
+    @keyframes progress{to{width:100%}}
+
+    /* -------------------- Page wrapper -------------------- */
+    .page{max-width:var(--max-width);margin:80px auto;padding:28px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));box-shadow:var(--soft-shadow);min-height:calc(100vh - 120px)}
+
+    /* -------------------- Sticky Navbar -------------------- */
+    .navbar{position:fixed;left:0;right:0;top:0;height:72px;background:linear-gradient(180deg, rgba(8,10,12,0.7), rgba(8,10,12,0.55));backdrop-filter: blur(8px);display:flex;align-items:center;justify-content:center;padding:8px 20px;z-index:999}
+    .nav-inner{max-width:var(--max-width);width:100%;display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent), #b77d1f);display:flex;align-items:center;justify-content:center}
+    .brand .logo svg{width:34px;height:34px}
+    .brand h1{font-size:1.05rem;margin:0;line-height:1;color:#fff}
+    .brand p{margin:0;font-size:.72rem;color:var(--muted);opacity:0.95}
+
+    .nav-actions{margin-left:auto;display:flex;align-items:center;gap:12px}
+    .search{display:flex;align-items:center;background:var(--glass-2);padding:8px;border-radius:12px;gap:8px;min-width:260px}
+    .search input{background:transparent;border:none;outline:none;color:#e6eef8;font-size:.95rem;width:100%}
+    .dots{display:flex;align-items:center;gap:6px;margin-left:8px}
+    .dot-btn{padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);cursor:pointer;font-weight:700}
+    .main-nav{display:flex;gap:12px;margin-left:12px}
+    .main-nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    .main-nav a:hover{color:#fff;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent)}
+
+    /* -------------------- Hero / Carousel -------------------- */
+    .hero{margin-top:20px;border-radius:14px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 6px 40px rgba(2,6,23,0.6)}
+    .hero-inner{position:relative;aspect-ratio:16/9;display:block}
+
+    .slides{position:absolute;inset:0;display:flex;transition:transform .9s cubic-bezier(.2,.9,.2,1)}
+    .slide{flex:0 0 100%;display:grid;grid-template-columns:1fr;align-items:center;padding:28px}
+    .slide .hero-img{position:relative;border-radius:8px;overflow:hidden;height:100%;display:flex;align-items:center;justify-content:center}
+
+    /* overlay content on hero image */
+    .hero-caption{position:absolute;left:40px;bottom:40px;z-index:30;max-width:56%;background:linear-gradient(180deg, rgba(6,8,12,0.45), rgba(6,8,12,0.25));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .hero-caption h2{margin:0;font-size:1.6rem;color:#fff}
+    .hero-caption p{margin:8px 0;color:var(--muted)}
+    .cta-row{display:flex;gap:12px;margin-top:12px}
+    .btn-cta{background:linear-gradient(90deg,var(--accent), #ffd37f);padding:10px 16px;border-radius:10px;border:none;font-weight:800;cursor:pointer}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 16px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+    /* hero controls */
+    .hero-controls{position:absolute;right:18px;top:18px;display:flex;gap:8px;z-index:40}
+    .control{width:44px;height:44px;border-radius:10px;background:rgba(0,0,0,0.45);display:grid;place-items:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+
+    /* indicators */
+    .indicators{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;gap:8px;z-index:40}
+    .indicator{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer}
+    .indicator.active{background:linear-gradient(90deg,var(--accent), #ffd37f)}
+
+    /* -------------------- Content sections -------------------- */
+    .content{display:grid;grid-template-columns:1fr 380px;gap:28px;margin-top:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .card h3{margin:0 0 12px 0;color:#fff}
+    .card p{color:var(--muted);line-height:1.6}
+    .key-points{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .kp{display:flex;gap:12px;align-items:flex-start}
+    .kp .kpi{min-width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--accent), #b77d1f);display:grid;place-items:center;font-weight:800;color:#071428}
+    .kp .txt{color:var(--muted)}
+
+    /* -------------------- Portfolio -------------------- */
+    .portfolio{margin-top:26px}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;margin-top:12px}
+    .port-item{border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:12px;border:1px solid rgba(255,255,255,0.02)}
+    .port-thumb{width:100%;height:160px;border-radius:10px;background-size:cover;background-position:center}
+    .port-desc{margin-top:10px;color:var(--muted);font-weight:700}
+
+    /* -------------------- Footer / Contact -------------------- */
+    .footer{display:flex;justify-content:space-between;align-items:flex-start;margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02)}
+    .footer .left{display:flex;gap:12px;align-items:center}
+    .footer .left .logo-sm{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent), #b77d1f);display:grid;place-items:center}
+    .footer .contact-form{width:360px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .contact-form label{display:block;font-size:0.85rem;color:var(--muted);margin-bottom:8px}
+    .contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:none;background:rgba(0,0,0,0.22);color:#e6eef8;margin-bottom:10px}
+    .contact-form button{background:linear-gradient(90deg,var(--accent), #ffd37f);border:none;padding:10px 12px;border-radius:10px;font-weight:800;cursor:pointer}
+
+    /* -------------------- Cookie swipe-up -------------------- */
+    .cookie-wrap{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;background:linear-gradient(180deg, rgba(12,14,17,0.98), rgba(10,12,15,0.92));padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 12px 48px rgba(0,0,0,0.6);display:flex;gap:12px;align-items:center;z-index:9999}
+    .cookie-wrap .cookie-txt{color:var(--muted);max-width:520px}
+    .cookie-actions{display:flex;gap:8px;margin-left:12px}
+    .btn-accept{background:linear-gradient(90deg,var(--accent), #ffd37f);padding:10px 12px;border-radius:10px;border:none;font-weight:800}
+    .btn-decline{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:1100px){.content{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:repeat(2,1fr)}.hero-caption{left:18px;right:18px;max-width:unset}}
+    @media (max-width:720px){.nav-inner{padding:0 8px}.brand h1{font-size:.92rem}.search{min-width:140px}.portfolio-grid{grid-template-columns:1fr}.footer{flex-direction:column;gap:12px}.hero-caption h2{font-size:1.05rem}}
+
+    /* small helper */
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+
+  <!-- Loader overlay (will hide when page ready) -->
+  <div class="loader-overlay" id="loader">
+    <div class="loader-box">
+      <div class="loader-logo" aria-hidden>
+        <!-- inline SVG logo compact -->
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="#fff" fill-opacity="0.08"/>
+          <path d="M6 15h12v1H6z" fill="#071428" opacity="0.3"/>
+          <path d="M7 9h10v1H7z" fill="#071428" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="loader-title">Shubham Associates</div>
+      <div class="loader-sub">Preparing a beautiful, smooth page for you — loading assets</div>
+      <div class="spinner" role="status" aria-hidden></div>
+      <div class="loader-progress" style="margin-top:14px"><i></i></div>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" role="navigation">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="FZqOBKg.png" alt="Shubham Associates Logo" class="logo">
+        <div>
+        <div>
+          <h1>Shubham Associates</h1>
+          <p>Accounts • Tally • AutoCAD</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="search" role="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><path d="M21 21l-4.35-4.35" stroke="#c7d3e0" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input id="navSearch" placeholder="Search services, e.g., GST setup" aria-label="Search">
+        </div>
+
+        <div class="main-nav" role="menubar">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="dots" aria-hidden>
+          <button class="dot-btn" id="menuBtn">☰</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page container -->
+  <main class="page" id="home">
+
+    <!-- Hero / image slider (16:9) -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <div class="slides" id="slides">
+
+          <!-- Slide 1: Tally - Company Creation -->
+          <div class="slide" data-index="0">
+            <div class="hero-img" style="background:linear-gradient(180deg, rgba(6,8,12,0.45), rgba(6,8,12,0.15));">
+              <!-- Generated high-quality SVG image as inline background using data URI -->
+              <div style="position:absolute;inset:0;background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="%23181724"/><stop offset="1" stop-color="%230b1220"/></linearGradient><linearGradient id="b" x1="0" x2="1"><stop offset="0" stop-color="%23ffd37f"/><stop offset="1" stop-color="%23d4a72c"/></linearGradient></defs><rect width="1920" height="1080" fill="url(%23a)"/><g transform="translate(120,120)"><rect width="1680" height="840" rx="28" fill="rgba(255,255,255,0.02)"/></g><g transform="translate(180,160)"><rect x="40" y="40" width="1320" height="520" rx="18" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.03)"/></g><g transform="translate(220,200)"><path d="M0 420c120-180 360-220 620-220 260 0 460 64 560 220H0z" fill="url(%23b)" opacity="0.12"/></g><g transform="translate(260,240)"><rect x="24" y="24" width="1160" height="420" rx="12" fill="rgba(255,255,255,0.01)"/></g><g transform="translate(320,300)"><text x="0" y="0" font-size="44" font-family="Inter,Arial" fill="%23ffffff">TALLY - Company Creation & Configuration</text><text x="0" y="70" font-size="22" fill="%23d0d9e6">Setup company, GST, vouchers, inventory & payroll — done right.</text></g><g transform="translate(1050,360)"><rect x="0" y="0" width="420" height="240" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.03)"/></g><g transform="translate(380,360)"><rect x="0" y="0" width="560" height="240" rx="12" fill="rgba(255,255,255,0.01)"/></g><g transform="translate(420,420)"><circle cx="46" cy="46" r="46" fill="url(%23b)"/></g></svg>'); background-size:cover;background-position:center;filter:contrast(1.03) saturate(1.02);"></div>
+
+              <!-- caption -->
+              <div class="hero-caption">
+                <h2>Company Creation & Smart Configuration</h2>
+                <p>We set up your Tally company with proper books, GST, voucher structure, inventory masters and payroll — ready to use.</p>
+                <div class="cta-row">
+                  <button class="btn-cta" onclick="scrollToSection('services')">More Info</button>
+                  <button class="btn-ghost" onclick="openContact()">Request Quote</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: AutoCAD / 2D Design -->
+          <div class="slide" data-index="1">
+            <div class="hero-img">
+              <div style="position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="%2308141a"/><stop offset="1" stop-color="%230b1220"/></linearGradient><linearGradient id="g3" x1="0" x2="1"><stop offset="0" stop-color="%232d5cff"/><stop offset="1" stop-color="%236a82fb"/></linearGradient></defs><rect width="1920" height="1080" fill="url(%23g2)"/><g transform="translate(140,140)"><rect width="1640" height="800" rx="24" fill="rgba(255,255,255,0.01)"/></g><g transform="translate(220,220)"><path d="M0 520c200-200 420-260 720-260s540 60 700 260H0z" fill="url(%23g3)" opacity="0.12"/></g><g transform="translate(320,280)"><text x="0" y="0" font-size="44" font-family="Inter,Arial" fill="%23ffffff">AutoCAD 2D Design</text><text x="0" y="70" font-size="22" fill="%23c9d6f1">Detailed 2D drafting, layers, annotations—fast precision for your projects.</text></g></svg>'); background-size:cover;background-position:center;filter:contrast(1.04)'></div>
+              <div class="hero-caption">
+                <h2>AutoCAD 2D — Accurate Drafting</h2>
+                <p>From measured drawings to production-ready DXF/DWG files. Fast turnarounds, accurate layers.</p>
+                <div class="cta-row">
+                  <button class="btn-cta" onclick="scrollToSection('portfolio')">See Works</button>
+                  <button class="btn-ghost" onclick="openContact()">Get in Touch</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Combined Services -->
+          <div class="slide" data-index="2">
+            <div class="hero-img">
+              <div style="position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><linearGradient id="g4" x1="0" x2="1"><stop offset="0" stop-color="%230c0f16"/><stop offset="1" stop-color="%23060a10"/></linearGradient><linearGradient id="g5" x1="0" x2="1"><stop offset="0" stop-color="%23ffd37f"/><stop offset="1" stop-color="%232d5cff"/></linearGradient></defs><rect width="1920" height="1080" fill="url(%23g4)"/><g transform="translate(160,120)"><rect width="1600" height="760" rx="24" fill="rgba(255,255,255,0.01)"/></g><g transform="translate(320,260)"><text x="0" y="0" font-size="44" font-family="Inter,Arial" fill="%23ffffff">End-to-End: Accounting & Design</text><text x="0" y="70" font-size="22" fill="%23cddbf6">Tally setups + CAD drawings — a one-stop solution for small & medium businesses.</text></g></svg>'); background-size:cover;background-position:center;filter:contrast(1.03)'></div>
+              <div class="hero-caption">
+                <h2>Combined Packages</h2>
+                <p>Choose packages that include company setup, monthly accounting support, and CAD drafting for projects.</p>
+                <div class="cta-row">
+                  <button class="btn-cta" onclick="scrollToSection('services')">View Packages</button>
+                  <button class="btn-ghost" onclick="openContact()">Enquire</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- controls -->
+        <div class="hero-controls">
+          <div class="control" id="prevBtn" title="Previous">◀</div>
+          <div class="control" id="nextBtn" title="Next">▶</div>
+        </div>
+
+        <!-- indicators -->
+        <div class="indicators" id="inds">
+          <div class="indicator active" data-i="0"></div>
+          <div class="indicator" data-i="1"></div>
+          <div class="indicator" data-i="2"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Content: company creation info and key points -->
+    <section class="content" id="services">
+      <div class="card">
+        <h3>What is Company Creation in Tally?</h3>
+        <p class="muted">Company Creation means registering a company's basic identity in Tally so you can maintain its accounts, GST, payroll, inventory and reports.</p>
+
+        <div class="key-points">
+          <div class="kp">
+            <div class="kpi">1</div>
+            <div class="txt">Enter Company Name, Mailing Name & Address, Country & State (for GST), Financial Year & Books beginning.</div>
+          </div>
+          <div class="kp">
+            <div class="kpi">2</div>
+            <div class="txt">Set up Chart of Accounts, Voucher Types, Numbering, and Opening Balances for smooth accounting.</div>
+          </div>
+          <div class="kp">
+            <div class="kpi">3</div>
+            <div class="txt">Configure Inventory, GST, and Payroll modules according to your business needs.</div>
+          </div>
+          <div class="kp">
+            <div class="kpi">4</div>
+            <div class="txt">Activate security, user roles and backup policies to protect your data.</div>
+          </div>
+        </div>
+
+        <hr style="margin:18px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+        <p class="muted">In short — <strong>creation</strong> = give identity; <strong>configuration</strong> = decide how your company will operate inside Tally (features ON/OFF, tax rules, vouchers).</p>
+      </div>
+
+      <!-- right column: quick contact / highlights -->
+      <aside class="card">
+        <h3>Quick Highlights</h3>
+        <p class="muted">We tailor each company setup for your industry: retail, manufacturing, services, contractors, or design firms.</p>
+        <div style="margin-top:12px">
+          <div class="kp"><div class="kpi">GST</div><div class="txt muted">GST return ready ledgers, HSN/SAC mapping & invoice templates.</div></div>
+          <div class="kp"><div class="kpi">INV</div><div class="txt muted">Inventory masters, units, godowns, and valuation methods configured.</div></div>
+          <div class="kp"><div class="kpi">PAY</div><div class="txt muted">Payroll structures, statutory settings and payslip formats ready.</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="portfolio" id="portfolio">
+      <h3 style="margin:0;color:#fff;">Portfolio & Services</h3>
+      <p class="muted">Services we provide for our clients — examples below are generated visuals for demonstration.</p>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <!-- Portfolios generated as inline SVG background thumbnails -->
+        <div class="port-item card">
+          <div class="port-thumb" style="background-image:url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="600" height="400"><defs><linearGradient id="p1" x1="0" x2="1"><stop offset="0" stop-color="%23060a10"/><stop offset="1" stop-color="%232d5cff"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23p1)"/><text x="24" y="40" font-size="20" fill="%23fff">Company Creation</text><text x="24" y="76" font-size="14" fill="%23d0d9e6">Tally company setup, GST & vouchers</text></svg>');"></div>
+          <div class="port-desc">Company Creation — Tally setup for SMEs</div>
+        </div>
+
+        <div class="port-item card">
+          <div class="port-thumb" style="background-image:url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="600" height="400"><defs><linearGradient id="p2" x1="0" x2="1"><stop offset="0" stop-color="%23070e16"/><stop offset="1" stop-color="%236a82fb"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23p2)"/><text x="24" y="40" font-size="20" fill="%23fff">AutoCAD 2D</text><text x="24" y="76" font-size="14" fill="%23d0d9e6">Architectural & mechanical drafting</text></svg>');"></div>
+          <div class="port-desc">AutoCAD 2D drafting — precise & fast</div>
+        </div>
+
+        <div class="port-item card">
+          <div class="port-thumb" style="background-image:url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="600" height="400"><defs><linearGradient id="p3" x1="0" x2="1"><stop offset="0" stop-color="%230a0d12"/><stop offset="1" stop-color="%23ffd37f"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23p3)"/><text x="24" y="40" font-size="20" fill="%23071a2a">Accounting Support</text><text x="24" y="76" font-size="14" fill="%23d0d9e6">Monthly bookkeeping & reconciliations</text></svg>');"></div>
+          <div class="port-desc">Accounting & reconciliation services</div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+        <button class="btn-cta" onclick="openContact()">Hire Us</button>
+        <button class="btn-ghost" onclick="scrollToSection('contact')">Contact</button>
+      </div>
+    </section>
+
+    <!-- Footer with logo and contact form -->
+    <footer class="footer" id="contact">
+      <div class="left">
+        <div class="logo-sm" aria-hidden>
+          <svg width="52" height="52" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="12" fill="url(#g)"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:800">Shubham Associate</div>
+          <div class="muted" style="font-size:0.92rem">Accounts Management • Tally Services • AutoCAD</div>
+          <div style="margin-top:8px" class="muted">Phone: <a href="tel:9414717878" style="color:var(--accent) ;text-decoration:none">9414717878</a></div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <label for="name">Your name</label>
+        <input id="cname" placeholder="Full name">
+        <label for="email">Email / WhatsApp</label>
+        <input id="cemail" placeholder="email or whatsapp number">
+        <label for="msg">Brief message</label>
+        <textarea id="cmsg" rows="4" placeholder="How can we help? e.g., Company creation + GST setup"></textarea>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button onclick="submitContact()">Send</button>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Cookie swipe-up -->
+  <div class="cookie-wrap" id="cookie">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent), #b77d1f);display:grid;place-items:center;font-weight:800;color:#071428">S</div>
+      <div class="cookie-txt">We use cookies to improve experience — analytics & session. Accept to continue or decline to hide non-essential cookies.</div>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-decline" id="cookieDecline">Decline</button>
+      <button class="btn-accept" id="cookieAccept">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    /* ------------------ Page behaviour ------------------ */
+    document.addEventListener('DOMContentLoaded', function(){
+      // simulate asset load then hide loader
+      setTimeout(()=>{
+        const loader = document.getElementById('loader');
+        loader.style.opacity = '0'; loader.style.visibility='hidden';
+      }, 1200);
+
+      // hero slider
+      const slides = document.getElementById('slides');
+      const inds = document.querySelectorAll('.indicator');
+      const total = slides.children.length; let idx = 0; let running = true;
+      function go(i){ idx = (i + total) % total; slides.style.transform = `translateX(${ -idx * 100 }%)`; inds.forEach((n)=>n.classList.remove('active')); inds[idx].classList.add('active'); }
+      document.getElementById('nextBtn').addEventListener('click', ()=>{go(idx+1)});
+      document.getElementById('prevBtn').addEventListener('click', ()=>{go(idx-1)});
+      inds.forEach(ind => ind.addEventListener('click', (e)=>{go(Number(e.target.dataset.i))}));
+      // autoplay
+      let auto = setInterval(()=>{ if(running) go(idx+1); }, 5000);
+      document.querySelector('.hero').addEventListener('mouseenter', ()=> running=false);
+      document.querySelector('.hero').addEventListener('mouseleave', ()=> running=true);
+
+      // cookie actions
+      const cookie = document.getElementById('cookie');
+      document.getElementById('cookieAccept').addEventListener('click', ()=>{ cookie.style.display='none'; localStorage.setItem('shubham_cookies','accepted'); });
+      document.getElementById('cookieDecline').addEventListener('click', ()=>{ cookie.style.display='none'; localStorage.setItem('shubham_cookies','declined'); });
+      // hide if previously chosen
+      const pref = localStorage.getItem('shubham_cookies'); if(pref) cookie.style.display='none';
+
+      // sticky navbar shadow on scroll
+      window.addEventListener('scroll', ()=>{
+        const nav = document.querySelector('.navbar');
+        if(window.scrollY>8) nav.style.boxShadow='0 12px 40px rgba(2,6,23,0.6)'; else nav.style.boxShadow='none';
+      });
+
+      // simple form submit behaviour
+      window.submitContact = function(){
+        const n=document.getElementById('cname').value||'—';
+        const e=document.getElementById('cemail').value||'—';
+        const m=document.getElementById('cmsg').value||'—';
+        // send to whatsapp using web.whatsapp API via URL (opens user's WhatsApp)
+        const phone = '9414717878';
+        const text = encodeURIComponent(`Hello!%0AName: ${n}%0AContact: ${e}%0AMessage: ${m}`);
+        window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+      }
+
+      window.openContact = function(){ document.getElementById('cmsg').focus(); window.scrollTo({top:document.getElementById('contact').offsetTop - 60, behavior:'smooth'}); }
+
+      window.scrollToSection = function(id){ const el=document.getElementById(id); if(!el) return; window.scrollTo({top: el.offsetTop - 64, behavior:'smooth'}); }
+
+      // menu button quick demo (simple dropdown)
+      document.getElementById('menuBtn').addEventListener('click', ()=>{
+        alert('Quick menu:\n- Services\n- Contact\n- Home');
+      });
+
+    });
+
+    // remove loader forcibly if user tabs away and returns
+    window.addEventListener('load', ()=>{ const loader = document.getElementById('loader'); setTimeout(()=>{ loader.style.opacity=0; loader.style.visibility='hidden'; }, 400); });
+  </script>
+
+</body>
+</html>

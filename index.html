@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shubham Associates — Tally & Business Solutions and AutoCAD Designing</title>
+  <meta name="description" content="Tally ERP, GST setup, Inventory, Payroll, TDL customization, Data recovery & remote support. Modern, secure, and reliable business support for MSMEs and corporates.">
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shubham Associates — Tally & Business Solutions and AutoCAD Designing" />
+  <meta property="og:description" content="Accurate GST setups, inventory management, TDL customization and fast remote support for businesses." />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@yourhandle" />
+
+  <!-- JSON-LD LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"Shubham Associates",
+    "url":"https://yourdomain.com",
+    "logo":"https://yourdomain.com/assets/logo.png",
+    "telephone":"+91-9414717878",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Sector-1, K.B.H.B",
+      "addressLocality":"Jodhpur",
+      "addressRegion":"Rajasthan",
+      "postalCode":"342001",
+      "addressCountry":"IN"
+    },
+    "sameAs":[
+      "https://wa.me/919414717878"
+    ]
+  }
+  </script>
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-2bueo8nTj1n7neYj0KqQvI+5X4mCwzR5jH8pZfB7wSvT+o0N8SmZ8fGQjDk4n3yTgJq1j4Wc0+7C2mS9F47Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- TailwindCSS (CDN for quick preview; replace with compiled CSS in production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            navy: '#0b1220',
+            charcoal: '#111827',
+            amber: {
+              400: '#f0c36a',
+              500: '#e2b04b',
+            },
+            cyan: '#00d4ff',
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(255,255,255,0.06), 0 10px 30px rgba(0,0,0,0.35)',
+          },
+          keyframes: {
+            floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            pulseRing: { '0%': { boxShadow: '0 0 0 0 rgba(226,176,75,0.5)' }, '70%': { boxShadow: '0 0 0 30px rgba(226,176,75,0)' }, '100%': { boxShadow: '0 0 0 0 rgba(226,176,75,0)' } }
+          },
+          animation: {
+            floaty: 'floaty 6s ease-in-out infinite',
+            fadeUp: 'fadeUp .9s ease forwards',
+            pulseRing: 'pulseRing 2s cubic-bezier(0,.9,.3,1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root{
+      --navy:#0b1220; --charcoal:#111827; --amber-400:#f0c36a; --amber-500:#e2b04b; --cyan:#00d4ff;
+    }
+    /* Base */
+    html{scroll-behavior:smooth}
+    body{background:#0a0f1a;color:#e5e7eb}
+    /* Glass util */
+    .glass{background:rgba(255,255,255,.04);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08)}
+    /* Gradient helpers */
+    .hero-gradient{background:
+      radial-gradient(1200px 400px at 10% 10%, rgba(0,212,255,.06), transparent 40%),
+      radial-gradient(800px 300px at 90% 10%, rgba(240,195,106,.08), transparent 50%),
+      linear-gradient(180deg, #0b1220, #101826 55%, #0a0f1a)}
+    .section-gradient{background:
+      radial-gradient(600px 200px at 15% 10%, rgba(240,195,106,.06), transparent 40%),
+      radial-gradient(500px 200px at 85% 5%, rgba(0,212,255,.05), transparent 40%)}
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease}
+    .reveal.show{opacity:1; transform:none}
+    /* Buttons focus */
+    :focus-visible{outline:3px solid rgba(226,176,75,.35); outline-offset:3px}
+
+    /* Fancy gradient text */
+    .grad-text{background:linear-gradient(90deg, var(--amber-400), #e0dbdb, var(--cyan)); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+    /* Parallax layers */
+    .parallax{transform-style:preserve-3d; perspective:1000px}
+    .layer[data-depth]{transform: translateZ(calc(var(--d,1) * 1px))}
+
+    /* Navbar blur edge */
+    .nav-shadow{box-shadow:0 10px 30px rgba(0,0,0,.35)}
+
+    /* Portfolio hover */
+    .card-zoom{transform:translateZ(0); transition: transform .35s ease, box-shadow .35s ease}
+    .card-zoom:hover{transform:translateY(-8px) scale(1.02); box-shadow:0 18px 46px rgba(0,0,0,.35)}
+
+    /* Cookie banner */
+    .cookie-enter{transform: translateY(100%); opacity:0}
+    .cookie-enter.cookie-show{transform:none; opacity:1; transition: all .6s cubic-bezier(.2,.9,.4,1)}
+
+    /* Subtle grid background */
+    .grid-bg{
+      background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Decorative orbs */
+    .orb{filter: blur(40px); opacity:.25; mix-blend:screen}
+
+    /* Footer links color override for traditional black links */
+    .footer-links a{color:#f8f9fa !important}
+    .footer-links a:hover{color:#10e422 !important; text-decoration: underline}
+
+    /* Smooth custom scrollbar (desktop only) */
+    @media (min-width:1024px){
+      *::-webkit-scrollbar{height:12px;width:12px}
+      *::-webkit-scrollbar-track{background:#0c1322}
+      *::-webkit-scrollbar-thumb{background:#1f2937;border:3px solid #0c1322;border-radius:9999px}
+      *::-webkit-scrollbar-thumb:hover{background:#374151}
+    }
+  </style>
+</head>
+<body class="antialiased font-sans selection:bg-amber-500/20 selection:text-white">
+
+  <!-- ===== Sticky NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 nav-shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-16 flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-3 group">
+          <img src="FZqOBKg.png" alt="Shubham Associates Logo" class="h-10 w-10 rounded-xl ring-1 ring-white/10 group-hover:scale-105 transition" loading="lazy" />
+          <div class="hidden sm:block leading-tight">
+            <h1 class="text-white font-extrabold tracking-tight">Shubham Associates</h1>
+            <p class="text-xs text-amber-400/90">Tally & Business Solutions • AutoCAD Designing</p>
+          </div>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="#services" class="text-white/80 hover:text-white">Services</a>
+          <a href="#portfolio" class="text-white/80 hover:text-white">Portfolio</a>
+          <a href="#about" class="text-white/80 hover:text-white">About</a>
+          <a href="#contact" class="text-white/80 hover:text-white">Contact</a>
+          <a href="#contact" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 font-semibold shadow-glow hover:scale-105 transform transition">Free Consultation</a>
+        </nav>
+        <div class="md:hidden">
+          <button id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" class="p-2 rounded-lg border border-white/10 bg-white/10 text-white">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
+      <div class="grid gap-2 bg-white/5 rounded-xl p-3 border border-white/10">
+        <a href="#services" class="block px-3 py-2 rounded-lg hover:bg-white/10">Services</a>
+        <a href="#portfolio" class="block px-3 py-2 rounded-lg hover:bg-white/10">Portfolio</a>
+        <a href="#about" class="block px-3 py-2 rounded-lg hover:bg-white/10">About</a>
+        <a href="#contact" class="block px-3 py-2 rounded-lg hover:bg-white/10">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main id="home" class="pt-16 hero-gradient relative overflow-hidden">
+    <!-- Decorative orbs -->
+    <div class="absolute -top-24 -left-24 w-80 h-80 bg-cyan/20 rounded-full orb"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-400/20 rounded-full orb"></div>
+
+    <section class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center px-4 sm:px-6 lg:px-8 py-20 lg:py-28 parallax">
+      <div class="relative z-10">
+        <p class="inline-flex items-center gap-2 text-xs font-semibold bg-white/10 px-3 py-1 rounded-full glass animate-fadeUp">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+          Trusted by MSMEs & Corporates
+        </p>
+        <h2 class="mt-6 text-4xl sm:text-5xl xl:text-6xl font-extrabold leading-[1.1] tracking-tight">
+          Streamline your <span class="grad-text">Tally & AutoCAD</span>
+          with Expert Support
+        </h2>
+        <p class="mt-4 text-white/80 max-w-2xl">
+          Accurate GST setups, payroll, and inventory in Tally, combined with precise drafting and CAD customization in AutoCAD — so you focus on growth while we handle the details.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 font-semibold shadow-glow hover:scale-105 transform transition">
+            <i class="fa-solid fa-bolt"></i> Get Free Consultation
+          </a>
+          <a href="#services" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-white/20 hover:bg-white/5">
+            <i class="fa-solid fa-compass"></i> Explore Services
+          </a>
+        </div>
+        <div class="mt-6 flex gap-6 text-sm text-white/80">
+          <div class="flex items-center gap-2"><strong class="text-white">200+</strong><span>Projects</span></div>
+          <div class="flex items-center gap-2"><strong class="text-white">99%</strong><span>Satisfaction</span></div>
+          <div class="flex items-center gap-2"><strong class="text-white">24/7</strong><span>Remote Support</span></div>
+        </div>
+
+        <!-- Marquee of logos (placeholders) -->
+        <div class="mt-10 overflow-hidden relative">
+          <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#0b1220] via-transparent to-[#0b1220]"></div>
+          <div class="flex gap-10 whitespace-nowrap animate-[marquee_18s_linear_infinite] will-change-transform">
+            <img src="https://dummyimage.com/120x36/1f2937/ffffff&text=Client+A" alt="Client A" class="opacity-60 hover:opacity-100 transition" loading="lazy" />
+            <img src="https://dummyimage.com/120x36/1f2937/ffffff&text=Client+B" alt="Client B" class="opacity-60 hover:opacity-100 transition" loading="lazy" />
+            <img src="https://dummyimage.com/120x36/1f2937/ffffff&text=Client+C" alt="Client C" class="opacity-60 hover:opacity-100 transition" loading="lazy" />
+            <img src="https://dummyimage.com/120x36/1f2937/ffffff&text=Client+D" alt="Client D" class="opacity-60 hover:opacity-100 transition" loading="lazy" />
+            <img src="https://dummyimage.com/120x36/1f2937/ffffff&text=Client+E" alt="Client E" class="opacity-60 hover:opacity-100 transition" loading="lazy" />
+            <img src="https://dummyimage.com/120x36/1f2937/ffffff&text=Client+F" alt="Client F" class="opacity-60 hover:opacity-100 transition" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual -->
+      <div class="relative z-10">
+        <div class="absolute -inset-6 rounded-3xl bg-gradient-to-br from-cyan/20 via-transparent to-amber-400/20 blur-3xl"></div>
+        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl animate-floaty">
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1600&auto=format&fit=crop" type="image/jpeg" />
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop" alt="Dashboard preview" class="w-full h-[420px] object-cover" loading="lazy" />
+          </picture>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-3">
+            <div class="glass rounded-xl p-3 text-center">
+              <p class="text-xs text-white/70">Avg. Response</p>
+              <p class="text-xl font-bold">~ 30 min</p>
+            </div>
+            <div class="glass rounded-xl p-3 text-center">
+              <p class="text-xs text-white/70">Uptime</p>
+              <p class="text-xl font-bold">99.9%</p>
+            </div>
+            <div class="glass rounded-xl p-3 text-center">
+              <p class="text-xs text-white/70">SLA</p>
+              <p class="text-xl font-bold">Pro Support</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="relative section-gradient grid-bg py-20 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="text-center max-w-3xl mx-auto">
+        <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+          Our <span class="grad-text">Professional Services</span>
+        </h3>
+        <p class="mt-3 text-white/75">Delivering excellence with <strong>Tally</strong> and <strong>AutoCAD Drafting & Designing</strong> solutions crafted to empower your business and projects.</p>
+      </header>
+
+      <!-- Feature grid -->
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1: AutoCAD Drafting -->
+        <article class="reveal glass rounded-2xl p-6 border border-white/10 card-zoom">
+          <div class="flex items-center gap-3">
+            <span class="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center animate-pulseRing">
+              <i class="fa-solid fa-drafting-compass text-amber-400"></i>
+            </span>
+            <h4 class="text-xl font-bold">AutoCAD Drafting & Designing</h4>
+          </div>
+          <p class="mt-3 text-white/80">Professional drafting for engineering, architecture, and construction — precise drawings, layers, blocks, and standards complied with BIS guidelines.</p>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Floor plans, elevations, sections</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> MEP & Structural details</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> CAD to PDF/Plot ready sets</li>
+          </ul>
+          <a href="New Look Autocad Page.html" class="mt-5 inline-flex items-center gap-2 text-amber-400 hover:underline">Explore AutoCAD <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <!-- Card 2: Tally ERP -->
+        <article class="reveal glass rounded-2xl p-6 border border-white/10 card-zoom">
+          <div class="flex items-center gap-3">
+            <span class="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center animate-pulseRing">
+              <i class="fa-solid fa-calculator text-amber-400"></i>
+            </span>
+            <h4 class="text-xl font-bold">Tally ERP & Prime Services</h4>
+          </div>
+          <p class="mt-3 text-white/80">Setup, configuration, GST, inventory, payroll, advanced security and automation to streamline your operations.</p>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> GST implementation & filing support</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Inventory, BOM, price lists</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Payroll & attendance</li>
+          </ul>
+          <a href="Tally Page New.html" class="mt-5 inline-flex items-center gap-2 text-amber-400 hover:underline">Explore Tally <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <!-- Card 3: TDL Customization -->
+        <article class="reveal glass rounded-2xl p-6 border border-white/10 card-zoom">
+          <div class="flex items-center gap-3">
+            <span class="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center animate-pulseRing">
+              <i class="fa-solid fa-code text-amber-400"></i>
+            </span>
+            <h4 class="text-xl font-bold">TDL Customization</h4>
+          </div>
+          <p class="mt-3 text-white/80">Custom print formats, GST summary on invoice, auto-calculations, dashboards, role-based access and more.</p>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Branded invoices & e-Invoice</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Approval workflows</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> MIS reports & dashboards</li>
+          </ul>
+          <a href="TDL Cutomization.html" class="mt-5 inline-flex items-center gap-2 text-amber-400 hover:underline">Customize Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <!-- Card 4: Data Migration -->
+        <article class="reveal glass rounded-2xl p-6 border border-white/10 card-zoom">
+          <div class="flex items-center gap-3">
+            <span class="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center animate-pulseRing">
+              <i class="fa-solid fa-database text-amber-400"></i>
+            </span>
+            <h4 class="text-xl font-bold">Data Migration & Recovery</h4>
+          </div>
+          <p class="mt-3 text-white/80">Upgrade legacy data to latest builds, resolve corrupt ledgers, and validate opening balances with audit trails.</p>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Version upgrade & integrity check</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Backup automation</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Remote recovery assistance</li>
+          </ul>
+          <a href="Data Recovery and Migration.html" class="mt-5 inline-flex items-center gap-2 text-amber-400 hover:underline">Start Migration <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <!-- Card 5: Training -->
+        <article class="reveal glass rounded-2xl p-6 border border-white/10 card-zoom">
+          <div class="flex items-center gap-3">
+            <span class="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center animate-pulseRing">
+              <i class="fa-solid fa-chalkboard-user text-amber-400"></i>
+            </span>
+            <h4 class="text-xl font-bold">Training & SOPs</h4>
+          </div>
+          <p class="mt-3 text-white/80">Team training with standard operating procedures, checklists, and bilingual documentation (EN/HIN).</p>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> On-site & remote sessions</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Video guides & docs</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Certification paths</li>
+          </ul>
+          <a href="SOP's.html" class="mt-5 inline-flex items-center gap-2 text-amber-400 hover:underline">Request Training <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <!-- Card 6: Support -->
+        <article class="reveal glass rounded-2xl p-6 border border-white/10 card-zoom">
+          <div class="flex items-center gap-3">
+            <span class="h-10 w-10 rounded-xl bg-amber-500/20 flex items-center justify-center animate-pulseRing">
+              <i class="fa-solid fa-headset text-amber-400"></i>
+            </span>
+            <h4 class="text-xl font-bold">Priority Support</h4>
+          </div>
+          <p class="mt-3 text-white/80">AMC, SLAs, and 24/7 remote assistance. Issues resolved quickly via AnyDesk/TeamViewer with clear logs.</p>
+          <ul class="mt-4 space-y-2 text-white/80 text-sm">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Ticketing & escalation</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Monthly health reports</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-400"></i> WhatsApp quick help</li>
+          </ul>
+          <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-amber-400 hover:underline">Contact Support <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO ===== -->
+  <section id="portfolio" class="py-20 sm:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <svg class="absolute -left-10 top-20 opacity-30" width="260" height="260" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="100" fill="url(#g1)"/>
+        <defs>
+          <radialGradient id="g1"><stop offset="0" stop-color="#f0c36a"/><stop offset="1" stop-color="#f0c36a" stop-opacity="0"/></radialGradient>
+        </defs>
+      </svg>
+      <svg class="absolute -right-16 bottom-10 opacity-30" width="300" height="300" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="100" fill="url(#g2)"/>
+        <defs>
+          <radialGradient id="g2"><stop offset="0" stop-color="#00d4ff"/><stop offset="1" stop-color="#00d4ff" stop-opacity="0"/></radialGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <h3 class="text-3xl md:text-4xl font-extrabold text-white">Portfolio & Case Studies</h3>
+        <p class="mt-3 text-white/70">A few examples — replace placeholders with your real project images and details.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <!-- Card -->
+        <figure class="reveal rounded-2xl overflow-hidden border border-white/10 shadow-glow card-zoom bg-[#0d1423]">
+          <img src="generated-image.png" alt="GST Cleanup" class="w-full h-48 object-cover" loading="lazy" />
+          <figcaption class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-semibold">GST Cleanup & Filing</h4>
+                <p class="text-sm text-white/70 mt-1">Clarified mismatches and filed returns for a trading firm, reduced penalties and improved compliance.</p>
+              </div>
+              <a href="GST Setup and Filling Support.html" class="shrink-0 inline-flex items-center gap-1 text-amber-400 hover:underline">Work with us <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal rounded-2xl overflow-hidden border border-white/10 shadow-glow card-zoom bg-[#0d1423]">
+          <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=800&auto=format&fit=crop" alt="TDL Invoice" class="w-full h-48 object-cover" loading="lazy" />
+          <figcaption class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-semibold">TDL Invoice Format</h4>
+                <p class="text-sm text-white/70 mt-1">Custom print format with GST summary, logo mapping and auto-calculations.</p>
+              </div>
+              <a href="Tally Page New.html" class="shrink-0 inline-flex items-center gap-1 text-amber-400 hover:underline">Request similar <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal rounded-2xl overflow-hidden border border-white/10 shadow-glow card-zoom bg-[#0d1423]">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop" alt="Data Migration" class="w-full h-48 object-cover" loading="lazy" />
+          <figcaption class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-semibold">Data Migration</h4>
+                <p class="text-sm text-white/70 mt-1">Upgraded legacy data to the latest Tally build and validated closing balances.</p>
+              </div>
+              <a href="#contact" class="shrink-0 inline-flex items-center gap-1 text-amber-400 hover:underline">Get a quote <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- CTA strip -->
+      <div class="mt-12 glass border border-white/10 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h4 class="font-semibold">Like what you see?</h4>
+          <p class="text-white/70">We can tailor a solution for your exact needs.</p>
+        </div>
+        <a href="#contact" class="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 font-semibold shadow-glow hover:scale-105 transform transition">Start a Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="py-20 sm:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 grid-bg section-gradient"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <h3 class="text-3xl md:text-4xl font-extrabold text-white">About Shubham Associates</h3>
+        <p class="mt-4 text-white/80">Shubham Associates helps MSMEs and enterprises optimize accounting workflows, ensure GST compliance, and recover or migrate Tally data with minimal downtime. We combine practical experience with clear documentation and responsive support.</p>
+        <ul class="mt-6 space-y-3 text-white/85">
+          <li class="flex gap-3"><span class="text-amber-400">★</span> Experienced in real‑world business scenarios and audits.</li>
+          <li class="flex gap-3"><span class="text-amber-400">★</span> Clear communication, documented processes, and secure data handling.</li>
+          <li class="flex gap-3"><span class="text-amber-400">★</span> Affordable packages and prompt remote support.</li>
+        </ul>
+        <div class="mt-6 grid sm:grid-cols-3 gap-4">
+          <div class="glass p-4 rounded-xl text-center">
+            <p class="text-3xl font-extrabold">8+</p>
+            <p class="text-white/70 text-sm">Years Experience</p>
+          </div>
+          <div class="glass p-4 rounded-xl text-center">
+            <p class="text-3xl font-extrabold">25+</p>
+            <p class="text-white/70 text-sm">Industries Served</p>
+          </div>
+          <div class="glass p-4 rounded-xl text-center">
+            <p class="text-3xl font-extrabold">4.9</p>
+            <p class="text-white/70 text-sm">Client Rating</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative reveal">
+        <div class="absolute -inset-6 bg-gradient-to-br from-cyan/20 to-amber-400/20 blur-3xl rounded-3xl"></div>
+        <img src="FZqOBKg(1).png" alt="Team work" class="relative rounded-3xl border border-white/10 shadow-2xl" loading="lazy" />
+        <div class="absolute -bottom-5 -left-5 glass border border-white/10 rounded-2xl p-4 hidden sm:flex items-center gap-3">
+          <span class="h-10 w-10 rounded-full bg-emerald-500/20 flex items-center justify-center"><i class="fa-solid fa-shield-halved text-emerald-400"></i></span>
+          <div>
+            <p class="font-semibold leading-tight">Secure by Design</p>
+            <p class="text-xs text-white/70">Encryption, backups, audit trails</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT (Bottom split: Logo/details left, WhatsApp form right) ===== -->
+  <section id="contact" class="py-20 sm:py-24 bg-[#0f1724] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-start">
+      <!-- Left: Company block fixed style -->
+      <aside class="reveal">
+        <div class="flex items-center gap-4">
+          <img src="FZqOBKg.png" alt="Logo" class="h-16 w-16 rounded-2xl ring-1 ring-white/10" />
+          <div>
+            <h4 class="text-2xl font-extrabold">Shubham Associates</h4>
+            <p class="text-white/70">Tally & Business Solutions and AutoCAD Designing</p>
+          </div>
+        </div>
+        <div class="mt-6 space-y-3 text-white/85">
+          <p>📍 Sector-1, K.B.H.B, Jodhpur, Rajasthan</p>
+          <p>📞 <a class="underline" href="tel:+919414717878">+91-9414717878</a></p>
+          <p>✉️ <a class="underline" href="mailto:shubhamassociates.pvt.ltd@gmail.com">shubhamassociates.pvt.ltd@gmail.com</a></p>
+          <p>💬 <a class="underline" href="https://wa.me/919414717878" target="_blank" rel="noreferrer">WhatsApp Chat</a></p>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <div class="glass border border-white/10 rounded-xl p-4">
+            <p class="text-xs text-white/70">Response Time</p>
+            <p class="text-2xl font-bold">~30m</p>
+          </div>
+          <div class="glass border border-white/10 rounded-xl p-4">
+            <p class="text-xs text-white/70">Support</p>
+            <p class="text-2xl font-bold">24/7</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right: WhatsApp form -->
+      <form id="waForm" class="reveal glass bg-white/5 text-white rounded-2xl p-6 border border-white/10">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Name</label>
+            <input id="fName" required type="text" class="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500/40" placeholder="Your name" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Company</label>
+            <input id="fCompany" type="text" class="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500/40" placeholder="Your company" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Email</label>
+            <input id="fEmail" type="email" class="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500/40" placeholder="you@company.com" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Phone</label>
+            <input id="fPhone" type="tel" class="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500/40" placeholder="+91 …" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium">Service</label>
+            <select id="fService" class="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500/40">
+              <option value="Tally" class="text-black">Tally</option>
+              <option value="AutoCAD" class="text-black">AutoCAD</option>
+              <option value="TDL Customization" class="text-black">TDL Customization</option>
+              <option value="Data Migration" class="text-black">Data Migration</option>
+              <option value="Training" class="text-black">Training</option>
+              <option value="Support" class="text-black">Support</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium">Message</label>
+            <textarea id="fMessage" rows="4" required class="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500/40" placeholder="Tell us about your needs…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="mt-5 w-full px-5 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 font-semibold shadow-glow hover:scale-105 transform transition">
+          Send on WhatsApp
+        </button>
+        <p class="mt-2 text-xs text-white/60">Your message will open in WhatsApp — quick and secure.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="py-8 border-t border-white/10 bg-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-white/70">© <span id="year">2025</span> Shubham Associates — All Rights Reserved.</p>
+      <div class="footer-links flex items-center gap-4 text-sm">
+        <a href="Shubham Associates Privacy & Polies.html" class="underline">Privacy</a>
+        <a href="Shubham Associates Term & Conditions.html" class="underline">Terms</a>
+        <a href="#home" class="underline">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== COOKIES BANNER ===== -->
+  <div id="cookieBanner" class="fixed bottom-4 left-4 right-4 md:right-auto md:max-w-xl z-[60] cookie-enter glass border border-white/10 rounded-2xl p-4 text-sm hidden">
+    <div class="flex items-start gap-3">
+      <span class="h-9 w-9 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-cookie-bite text-amber-400"></i></span>
+      <div class="leading-relaxed">
+        We use cookies to enhance your browsing experience, analyze site traffic, and provide personalized content.
+        <a href="#privacy" class="underline">Learn more</a>.
+      </div>
+    </div>
+    <div class="mt-3 flex items-center gap-2 justify-end">
+      <button id="cookieDecline" class="px-3 py-2 rounded-lg border border-white/10 hover:bg-white/10">Decline</button>
+      <button id="cookieAccept" class="px-3 py-2 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 font-semibold">Accept</button>
+    </div>
+  </div>
+
+  <!-- ===== UTIL: Back to top button ===== -->
+  <button id="toTop" class="fixed bottom-6 right-6 z-40 hidden p-3 rounded-full glass border border-white/10 text-white hover:scale-110 transition" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    // Current Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Reveal on scroll using IntersectionObserver
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) e.target.classList.add('show');
+      }
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal, .card-zoom, .glass').forEach(el => io.observe(el));
+
+    // Back to top visibility
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      toTop.classList.toggle('hidden', y < 500);
+    });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href && href.length > 1){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if (el) el.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+
+    // Cookie banner
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieAccept = document.getElementById('cookieAccept');
+    const cookieDecline = document.getElementById('cookieDecline');
+    const cookieKey = 'sa_cookie_consent_v1';
+    function showCookieBanner(){
+      cookieBanner.classList.remove('hidden');
+      requestAnimationFrame(() => cookieBanner.classList.add('cookie-show'));
+    }
+    if(!localStorage.getItem(cookieKey)){
+      // Show after small delay to avoid layout shift
+      setTimeout(showCookieBanner, 800);
+    }
+    cookieAccept?.addEventListener('click', ()=>{
+      localStorage.setItem(cookieKey, 'accepted');
+      cookieBanner.classList.add('hidden');
+    });
+    cookieDecline?.addEventListener('click', ()=>{
+      localStorage.setItem(cookieKey, 'declined');
+      cookieBanner.classList.add('hidden');
+    });
+
+    // WhatsApp Form Submission
+    const waForm = document.getElementById('waForm');
+    waForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('fName').value.trim();
+      const company = document.getElementById('fCompany').value.trim();
+      const email = document.getElementById('fEmail').value.trim();
+      const phone = document.getElementById('fPhone').value.trim();
+      const service = document.getElementById('fService').value;
+      const message = document.getElementById('fMessage').value.trim();
+
+      const text = `New inquiry from website:%0A`+
+                   `Name: ${encodeURIComponent(name)}%0A`+
+                   (company?`Company: ${encodeURIComponent(company)}%0A`:``)+
+                   (email?`Email: ${encodeURIComponent(email)}%0A`:``)+
+                   (phone?`Phone: ${encodeURIComponent(phone)}%0A`:``)+
+                   `Service: ${encodeURIComponent(service)}%0A`+
+                   `Message: ${encodeURIComponent(message)}`;
+
+      const waNumber = '919414717878'; // Change if needed
+      const waUrl = `https://wa.me/${waNumber}?text=${text}`;
+      window.open(waUrl, '_blank');
+    });
+
+    // Minor parallax effect on hero (performance-safe)
+    const hero = document.querySelector('#home');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(() => {
+        const offset = Math.min(60, window.scrollY * 0.06);
+        hero.style.backgroundPosition = `center ${offset}px`;
+        ticking = false;
+      });
+    }, { passive: true });
+  </script>
+</body>
+</html>

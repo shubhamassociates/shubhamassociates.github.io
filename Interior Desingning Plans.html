@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shubham Associates — 3D Drafting & Interior Plans</title>
+  <!-- Classic serif + sans pairing for luxury/classic look -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* -------------------------
+       GLOBAL / THEME
+       -------------------------*/
+    :root{
+      --bg:#0f1020; /* deep charcoal */
+      --card:#f8f7f4; /* creamy */
+      --muted:#a6a0a0;
+      --accent:#b48eeb; /* soft lilac */
+      --accent-2:#2d5cff; /* royal blue */
+      --glass: rgba(255,255,255,0.06);
+      --radius: 14px;
+      --transition: 240ms cubic-bezier(.2,.9,.3,1);
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#0c0c12 0%, #11121a 60%);
+      color:#eae8e4;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      overflow-x:hidden;
+    }
+    a{color:var(--accent-2);text-decoration:none}
+    img{max-width:100%;display:block}
+    /* -------------------------
+       NAVBAR
+       -------------------------*/
+    .navbar{
+      position:sticky;top:0;z-index:1200;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 28px;background:linear-gradient(90deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 6px 24px rgba(2,6,23,0.45);
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand .logo{
+      width:56px;height:56px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-family:'Playfair Display';font-size:18px;box-shadow:0 6px 18px rgba(20,20,40,0.6);
+    }
+    .brand .meta{line-height:1}
+    .brand .meta .name{font-family:'Playfair Display';font-size:18px;color:#fff;font-weight:700}
+    .brand .meta .tag{font-size:12px;color:var(--muted);margin-top:2px}
+
+    .nav-right{display:flex;align-items:center;gap:12px}
+    /* search */
+    .search-wrap{position:relative;min-width:320px;max-width:460px}
+    .search-input{
+      width:100%;padding:12px 44px 12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);
+      background:transparent;color:#fff;font-size:14px;outline:none;transition:var(--transition);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    .search-input::placeholder{color:#9b98a0}
+    .search-icon{position:absolute;right:40px;top:50%;transform:translateY(-50%);opacity:0.9}
+    .more-btn{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .more-menu{position:absolute;right:0;top:56px;background:linear-gradient(180deg,#0b0b10,#111216);padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 40px rgba(3,6,20,0.7);display:none}
+    .more-menu a{display:flex;gap:10px;padding:10px 14px;border-radius:8px;color:#eee}
+    .more-menu a:hover{background:rgba(255,255,255,0.02)}
+
+    /* -------------------------
+       HERO / WELCOME MODAL
+       -------------------------*/
+    .welcome-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:linear-gradient(0deg, rgba(1,1,2,0.55), rgba(1,1,2,0.55));backdrop-filter:blur(6px)}
+    .welcome-card{width:min(920px,92%);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:30px;border-radius:16px;border:1px solid rgba(255,255,255,0.04);display:flex;gap:22px;align-items:center}
+    .welcome-card .left{display:flex;flex-direction:column;gap:8px}
+    .welcome-card h2{margin:0;font-family:'Playfair Display';font-size:28px;color:#fff}
+    .welcome-card p{margin:0;color:var(--muted)}
+    .welcome-card .logo-sm{width:88px;height:88px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-weight:700;color:#fff;font-size:22px}
+    .welcome-card .cta{margin-top:12px}
+    .btn{display:inline-flex;gap:10px;align-items:center;padding:12px 18px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#fff;box-shadow:0 8px 30px rgba(45,92,255,0.12)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+
+    /* HERO SLIDER */
+    .hero{
+      height:88vh;min-height:560px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:18px
+    }
+    .slider{
+      display:flex;gap:0;height:100%;width:100%;align-items:center;transition:transform 700ms cubic-bezier(.2,.9,.25,1);will-change:transform
+    }
+    .slide{
+      min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;padding:36px;box-sizing:border-box
+    }
+    .slide .left{flex:0 0 52%;padding-right:40px}
+    .slide .right{flex:0 0 48%;display:flex;align-items:center;justify-content:center}
+    .slide .panel{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:28px;box-shadow:0 18px 60px rgba(4,6,12,0.7);border:1px solid rgba(255,255,255,0.03)}
+    .kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:12px;margin-bottom:10px}
+    .h-title{font-family:'Playfair Display';font-size:36px;margin:0;color:#fff}
+    .h-desc{color:var(--muted);margin-top:10px;font-size:15px}
+    .go-info{margin-top:16px}
+    /* slider controls */
+    .controls{position:absolute;left:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:40}
+    .ctrl{width:46px;height:46px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
+    .thumbs{position:absolute;right:20px;bottom:28px;display:flex;gap:10px;z-index:40}
+    .thumb{width:86px;height:56px;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(3,6,20,0.6);border:2px solid rgba(255,255,255,0.03);cursor:pointer}
+
+    /* -------------------------
+       SERVICES SECTION
+       -------------------------*/
+    .section{padding:84px 6vw;background:linear-gradient(180deg,transparent, rgba(255,255,255,0.01));}
+    .container-wide{max-width:1200px;margin:0 auto}
+    .section-title{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+    .section-title h3{margin:0;font-family:'Playfair Display';font-size:28px;color:#fff}
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .service-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 36px rgba(2,6,22,0.55)}
+    .service-card h4{margin:0;font-size:18px;color:#fff}
+    .service-card p{color:var(--muted);margin-top:8px;font-size:14px}
+    .keypoints{margin-top:12px;padding-left:18px;color:var(--muted)}
+
+    /* responsive service grid */
+    @media (max-width:1100px){.service-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:720px){.service-grid{grid-template-columns:1fr;padding:0 12px}}
+
+    /* -------------------------
+       PORTFOLIO
+       -------------------------*/
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .portfolio-item{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);box-shadow:0 12px 40px rgba(2,6,24,0.6)}
+    .portfolio-item img{width:100%;height:240px;object-fit:cover}
+    .portfolio-caption{position:absolute;left:14px;bottom:14px;background:rgba(2,6,20,0.6);padding:10px 12px;border-radius:10px;color:#fff;font-weight:600;font-size:14px}
+    @media (max-width:1100px){.portfolio-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:720px){.portfolio-grid{grid-template-columns:1fr}}
+
+    /* -------------------------
+       FOOTER / CONTACT
+       -------------------------*/
+    footer{padding:36px 6vw;background:linear-gradient(180deg,#07070a,#0a0a0f);border-top:1px solid rgba(255,255,255,0.02)}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;gap:24px;justify-content:space-between}
+    .footer-left{display:flex;align-items:center;gap:14px}
+    .logo-lg{width:110px;height:110px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-weight:800;color:#fff;font-size:28px}
+    .contact-form{width:520px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#fff;margin-bottom:12px}
+    .send-btn{width:100%;padding:14px;border-radius:10px;border:none;font-weight:800;cursor:pointer;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#fff}
+
+    /* small screens footer stack */
+    @media (max-width:820px){.footer-inner{flex-direction:column;align-items:center}.contact-form{width:100%}}
+
+    /* little helpers */
+    .muted{color:var(--muted)}
+    .spacer{height:28px}
+    .small{font-size:13px}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <img src="FZqOBKg.png" alt="Company Logo" style="width:50px;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,0.6)">
+      <div class="meta">
+        <div class="name">Shubham Associates</div>
+        <div class="tag">Tally & Business Solutions and Autocad Designing</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="search-wrap">
+        <input id="serviceSearch" class="search-input" placeholder="Search services — e.g., Tally, AutoCAD, Interior Plans..." />
+        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+        <div style="position: absolute; right: 0; top: 0;">
+          <div class="more-btn" id="moreToggle" title="More"> <i class="fas fa-ellipsis-v"></i> </div>
+          <div class="more-menu" id="moreMenu" style="right:0">
+            <a href="#services"><i class="fas fa-cogs"></i> Services</a>
+            <a href="#home"><i class="fas fa-house"></i> Home</a>
+            <a href="#contact"><i class="fas fa-address-book"></i> Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- WELCOME MODAL -->
+  <div class="welcome-modal" id="welcomeModal">
+    <div class="welcome-card">
+      <img src="FZqOBKg.png" alt="Company Logo" style="width:120px;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,0.6)">
+      <div class="left">
+        <h2>Welcome to Shubham Associates</h2>
+        <p class="muted">Luxury Drafting • Interior Design • Technical Execution — Precise, Beautiful, Reliable</p>
+        <div class="cta">
+          <button class="btn btn-primary" id="enterSite"><i class="fas fa-door-open"></i> Enter Site</button>
+          <button class="btn btn-ghost" id="dismissWelcome">Maybe later</button>
+        </div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <img src="FZqOBKg.png" alt="Company Logo" style="width:120px;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,0.6)">
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO / SLIDER -->
+  <header id="home" class="hero">
+    <div class="controls">
+      <div class="ctrl" id="prevBtn"><i class="fas fa-chevron-left"></i></div>
+      <div class="ctrl" id="pauseBtn" title="Pause/Play"><i class="fas fa-pause"></i></div>
+      <div class="ctrl" id="nextBtn"><i class="fas fa-chevron-right"></i></div>
+    </div>
+
+    <div id="slider" class="slider">
+      <!-- Slide 1 -->
+      <section class="slide">
+        <div class="left">
+          <div class="panel">
+            <span class="kicker">Interior Plans</span>
+            <h1 class="h-title">Elegant Residential Interiors — Detailed Plans & Visuals</h1>
+            <p class="h-desc">We create layered interior plans — furniture layouts, elevation details, joinery drawings and material schedules — so contractors and clients always stay aligned.</p>
+            <div class="go-info">
+              <button class="btn btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Go to Info</button>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div style="width:90%;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(2,6,24,0.6)">
+            <img src="Interior Slide 1.png" alt="Interior Plan 1" style="width:100%;height:520px;object-fit:cover;display:block">
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2 -->
+      <section class="slide">
+        <div class="left">
+          <div class="panel">
+            <span class="kicker">3D Drafting</span>
+            <h1 class="h-title">Architectural 3D Drafting — Precise Construction Packages</h1>
+            <p class="h-desc">Complete CAD packages with sections, details, MEP coordination and site-ready drawings for smooth approvals and execution.</p>
+            <div class="go-info">
+              <button class="btn btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">See Portfolio</button>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div style="width:95%;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(2,6,24,0.6)">
+            <img src="Interior Slide 2.png" alt="3D Drafting" style="width:100%;height:520px;object-fit:cover;display:block">
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3 -->
+      <section class="slide">
+        <div class="left">
+          <div class="panel">
+            <span class="kicker">Turnkey Execution</span>
+            <h1 class="h-title">From Concept to Reality — End-to-End Project Support</h1>
+            <p class="h-desc">Our multidisciplinary teams deliver drawings, procurement support and on-site coordination — reducing rework and timelines.</p>
+            <div class="go-info">
+              <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div style="width:95%;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(2,6,24,0.6)">
+            <img src="Interior Slide 3.png" alt="Execution" style="width:100%;height:520px;object-fit:cover;display:block">
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- thumbnails -->
+    <div class="thumbs" aria-hidden="true">
+      <div class="thumb" data-index="0"><img src="Interior Slide 1.png" alt="thumb1"></div>
+      <div class="thumb" data-index="1"><img src="Interior Slide 2.png" alt="thumb2"></div>
+      <div class="thumb" data-index="2"><img src="Interior Slide 3.png" alt="thumb3"></div>
+    </div>
+  </header>
+
+  <!-- SERVICES THEORY & KEY POINTS -->
+  <section id="services" class="section" aria-labelledby="servicesTitle">
+    <div class="container-wide">
+      <div class="section-title">
+        <h3 id="servicesTitle">Services — Theory & Key Points</h3>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <h4>Architectural 3D Drafting</h4>
+          <p class="muted">Precision CAD documentation for approvals & site execution.</p>
+          <ul class="keypoints">
+            <li>Floor plans, elevations & sections with full annotation.</li>
+            <li>Dimension-driven CAD for contractor use.</li>
+            <li>As-built conversion and revision control.</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h4>Interior Design & Layouts</h4>
+          <p class="muted">Spatial planning, furniture layout & material specification.</p>
+          <ul class="keypoints">
+            <li>Furniture & fixture layout, working drawings for joinery.</li>
+            <li>Material boards, finishes & procurement specs.</li>
+            <li>3D renders for client approvals.</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h4>Technical Coordination</h4>
+          <p class="muted">MEP coordination, clash-check & execution-ready drawings.</p>
+          <ul class="keypoints">
+            <li>MEP overlays & integration with architectural plans.</li>
+            <li>Clash reporting and resolution guidance.</li>
+            <li>Site-ready markups for contractors.</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h4>Tally & Accounting Support</h4>
+          <p class="muted">GST, vouchers and migration assistance for accounting workflows.</p>
+          <ul class="keypoints">
+            <li>Data migration and reconciliation support.</li>
+            <li>GST-ready reporting and ledgers.</li>
+            <li>Training & remote assistance options.</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h4>AutoCAD & Drafting Services</h4>
+          <p class="muted">Legacy CAD, layer structuring & printable sheets.</p>
+          <ul class="keypoints">
+            <li>Custom layer templates & plot-ready PDFs.</li>
+            <li>2D drafting and conversion to vector-ready formats.</li>
+            <li>Block libraries & standardized annotations.</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h4>Project Management Support</h4>
+          <p class="muted">Timelines, site-checks and vendor coordination.</p>
+          <ul class="keypoints">
+            <li>Procurement lists & vendor shortlisting.</li>
+            <li>Site monitoring & punch-list reporting.</li>
+            <li>Change-management documentation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="section" aria-labelledby="portfolioTitle">
+    <div class="container-wide">
+      <div class="section-title">
+        <h3 id="portfolioTitle">Portfolio — Selected Projects & Clients</h3>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="Interior Plan 1.png" alt="Res 1">
+          <div class="portfolio-caption">Residential — Modern Villa</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Interior 2.png" alt="Com 2">
+          <div class="portfolio-caption">Commercial — Retail Fitout</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Interior 3.png" alt="Int 3">
+          <div class="portfolio-caption">Interior — Boutique Hotel</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Interior 4.png" alt="Ind 4">
+          <div class="portfolio-caption">Industrial — Warehouse Layout</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Interior 5.png" alt="Joinery 5">
+          <div class="portfolio-caption">Custom Joinery & Shopfronts</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="Interior 6.png" alt="CAD 6">
+          <div class="portfolio-caption">Detailed CAD & Construction Docs</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:18px">
+        <button class="portfolio-btn btn btn-primary" onclick="window.location.href='#'">View More Projects</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="FZqOBKg.png" alt="Company Logo" style="width:120px;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,0.6)">
+        <div>
+          <div style="font-family:'Playfair Display';font-size:20px;font-weight:700">Shubham Associates</div>
+          <div class="muted small">Tally & Business Solutions and Autocad Designing</div>
+          <div style="height:8px"></div>
+          <div class="muted small">Registered Office: K.B.H.B, Jodhpur — India</div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <label class="small muted">Name</label>
+        <input id="nameField" class="input" placeholder="Your full name" />
+        <label class="small muted">Email</label>
+        <input id="emailField" class="input" placeholder="your@email.com" />
+        <label class="small muted">Project / Message</label>
+        <textarea id="msgField" class="input" placeholder="Brief about the project, location, budget..." rows="4"></textarea>
+        <label class="small muted">WhatsApp Number</label>
+        <input id="whField" class="input" placeholder="e.g., +919414717878" />
+        <button class="send-btn" id="sendBtn">Send via WhatsApp</button>
+        <div style="margin-top:8px;font-size:13px;color:var(--muted)">Clicking send will open WhatsApp with your message prefilled.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- Welcome modal logic ----------
+    const welcomeModal = document.getElementById('welcomeModal');
+    const enterSite = document.getElementById('enterSite');
+    const dismissWelcome = document.getElementById('dismissWelcome');
+    enterSite.addEventListener('click', ()=> welcomeModal.style.display='none');
+    dismissWelcome.addEventListener('click', ()=> welcomeModal.style.display='none');
+
+    // Auto-dismiss after 12s
+    setTimeout(()=>{ if(welcomeModal) welcomeModal.style.display='none'; }, 12000);
+
+    // ---------- More-menu toggle ----------
+    const moreToggle = document.getElementById('moreToggle');
+    const moreMenu = document.getElementById('moreMenu');
+    moreToggle.addEventListener('click', (e)=>{
+      e.stopPropagation(); moreMenu.style.display = moreMenu.style.display === 'block' ? 'none':'block';
+    });
+    document.addEventListener('click', ()=>{ moreMenu.style.display='none'; });
+
+    // ---------- Slider ----------
+    const slider = document.getElementById('slider');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const thumbs = Array.from(document.querySelectorAll('.thumb'));
+    let idx = 0; let playing = true; const DELAY = 5000;
+
+    function goTo(i){ idx = (i + slides.length) % slides.length; slider.style.transform = `translateX(-${idx * 100}%)`; updateThumbs(); }
+    function next(){ goTo(idx+1); }
+    function prev(){ goTo(idx-1); }
+    function updateThumbs(){ thumbs.forEach(t=>t.style.opacity='0.6'); if(thumbs[idx]) thumbs[idx].style.opacity='1'; }
+
+    document.getElementById('nextBtn').addEventListener('click', ()=>{ pause(); next(); });
+    document.getElementById('prevBtn').addEventListener('click', ()=>{ pause(); prev(); });
+    document.getElementById('pauseBtn').addEventListener('click', ()=>{
+      playing = !playing; document.getElementById('pauseBtn').innerHTML = playing? '<i class="fas fa-pause"></i>':'<i class="fas fa-play"></i>';
+      if(playing) start(); else clearInterval(timer);
+    });
+
+    thumbs.forEach(t=> t.addEventListener('click', ()=>{ pause(); goTo(Number(t.dataset.index)); }));
+
+    let timer;
+    function start(){ timer = setInterval(()=>{ next(); }, DELAY); }
+    function pause(){ clearInterval(timer); playing=false; document.getElementById('pauseBtn').innerHTML = '<i class="fas fa-play"></i>'; }
+    start(); updateThumbs();
+
+    // ---------- Simple search over services ----------
+    const services = [
+      'Architectural 3D Drafting','Interior Design','MEP Coordination','Tally Migration','GST Support','AutoCAD Drafting','Project Management','Joinery Drawings','3D Rendering','Site Supervision'
+    ];
+    const searchInput = document.getElementById('serviceSearch');
+    searchInput.addEventListener('input', (e)=>{
+      const v = e.target.value.trim().toLowerCase();
+      if(!v) return; // don't show suggestions here — keep simple
+      const matched = services.filter(s => s.toLowerCase().includes(v));
+      if(matched.length){
+        // quick: console the matches (or optionally show dropdown)
+        console.log('Matches:', matched);
+      }
+    });
+
+    // ---------- Contact (WhatsApp) ----------
+    const sendBtn = document.getElementById('sendBtn');
+    sendBtn.addEventListener('click', ()=>{
+      const name = encodeURIComponent(document.getElementById('nameField').value || 'Name not provided');
+      const email = encodeURIComponent(document.getElementById('emailField').value || '');
+      const msg = encodeURIComponent(document.getElementById('msgField').value || 'Hello, I am interested in your services.');
+      const wh = (document.getElementById('whField').value || '+919414717878').replace(/\s+/g,'');
+      const finalMsg = `Hi Shubham Associates!%0A%0AName: ${name}%0AEmail: ${email}%0AProject: ${msg}`;
+      // open WhatsApp web (mobile clients will open whatsapp app)
+      const waUrl = `https://wa.me/${encodeURIComponent(wh.replace('+',''))}?text=${finalMsg}`;
+      window.open(`https://wa.me/${wh}?text=${finalMsg}`, '_blank');
+    });
+
+    // ---------- Accessibility: keyboard nav for slider ----------
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowRight') next();
+      if(e.key === 'ArrowLeft') prev();
+    });
+
+    // ---------- Ensure hero always takes enough height on resize ----------
+    function setHeroMin(){ document.querySelector('.hero').style.minHeight = (window.innerHeight*0.82)+'px'; }
+    window.addEventListener('resize', setHeroMin);
+    setHeroMin();
+
+    // ---------- Small polish: ensure nav stays visible when scrolling (sticky already) ----------
+    // Add shadow when scrolled
+    const nav = document.querySelector('.navbar');
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 8) nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.6)'; else nav.style.boxShadow = '0 6px 24px rgba(2,6,23,0.45)';
+    });
+
+    // ---------- Prevent search form submit on Enter (no form) ----------
+    document.getElementById('serviceSearch').addEventListener('keydown', (e)=>{ if(e.key === 'Enter') e.preventDefault(); });
+  </script>
+
+</body>
+</html>
